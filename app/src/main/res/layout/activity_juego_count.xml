@@ -10,15 +10,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight= "1">
+        android:orientation="horizontal"
+        android:padding="@dimen/btnHomePaddingOutside">
 
         <ImageButton
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/btnHomeAncho"
+            android:layout_height="@dimen/btnHomeAlto"
             android:src="@drawable/home"
             android:scaleType="fitCenter"
-            android:background="@drawable/btn_background"
+            android:padding="@dimen/btnHomePaddingInside"
+            android:background="@drawable/btn_azul"
+            android:contentDescription="@string/HomePage"
             />
+
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="@dimen/txtTimerAncho"
+            android:layout_height="@dimen/btnHomeAlto"
+            android:text="00:00"
+            android:textSize="@dimen/txtTimerText"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_azul"/>
+
 
     </LinearLayout>
 

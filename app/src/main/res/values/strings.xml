@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">playAndPaint</string>
-    <string name="btn_inicio">buttonInicio</string>
-
+    <string name="HomePage">Volver a Home Page</string>
 </resources>
