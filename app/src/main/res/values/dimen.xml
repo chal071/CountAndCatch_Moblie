@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<dimen name="btnHomeAncho">70dp</dimen>
+<dimen name="btnHomeAlto">50dp</dimen>
+<dimen name="btnHomePaddingInside">10dp</dimen>
+<dimen name="btnHomePaddingOutside">20dp</dimen>
+<dimen name="txtTimerAncho">200dp</dimen>
+<dimen name="txtTimerText">30sp</dimen>
 </resources>
