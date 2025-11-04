@@ -17,7 +17,7 @@
             android:layout_height="70dp"
             android:src="@drawable/home"
             android:scaleType="fitCenter"
-            android:background="@drawable/btn_background"
+            android:background="@drawable/btn_azul"
             />
 
     </LinearLayout>
