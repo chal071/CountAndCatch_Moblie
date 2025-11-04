@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlayAndPaint">
         <activity
-            android:name=".HomePage"
+            android:name=".JuegoCountActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
