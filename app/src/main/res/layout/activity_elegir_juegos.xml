@@ -9,16 +9,21 @@
     android:padding="15dp"
     tools:context=".ElegirJuegos">
 
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
+    <!--button para volver la página de inicio-->
+    <ImageButton
+        android:id="@+id/btnInicio"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:src="@drawable/home"
+        android:scaleType="fitCenter"
+        android:layout_gravity="top"
+        android:backgroundTint="@color/blue_main"
         />
+
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="0"
+        android:layout_width="400dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center_vertical"
 
 
 
@@ -26,11 +31,11 @@
 
     <Button
         android:id="@+id/button_submit"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textSize=""
         android:layout_marginTop="16dp"
-        android:text="Confirm" />
+        android:text="Empezar" />
 
 
 </LinearLayout>

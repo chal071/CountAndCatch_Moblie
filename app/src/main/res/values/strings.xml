@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">playAndPaint</string>
+    <string name="btn_inicio">buttonInicio</string>
+
 </resources>
