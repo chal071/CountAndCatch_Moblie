@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">playAndPaint</string>
-    <string name="HomePage">Volver a Home Page</string>
+    <string name="app_name">Count and Catch</string>
+    <string name="home_page">Volver a Home Page</string>
 </resources>
