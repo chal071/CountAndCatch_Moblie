@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">playAndPaint</string>
+    <string name="app_name">CountandCatch</string>
+    <string name="txt_start">Start!</string>
 </resources>

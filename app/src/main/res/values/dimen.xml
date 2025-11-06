@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="imgLogo_width">500dp</dimen>
+    <dimen name="imgLogo_height">400dp</dimen>
+    <dimen name="circle">200dp</dimen>
+    <dimen name="imgStart">150dp</dimen>
+    <dimen name="imgPolygon">110dp</dimen>
 
 </resources>
