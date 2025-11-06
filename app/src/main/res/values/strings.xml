@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">CountandCatch</string>
     <string name="txt_start">Start!</string>
+    <string name="app_name">Count and Catch</string>
+    <string name="home_page">Volver a Home Page</string>
 </resources>
