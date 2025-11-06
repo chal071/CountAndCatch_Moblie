@@ -5,37 +5,46 @@
     android:id="@+id/mainElegirJuegos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="15dp"
     tools:context=".ElegirJuegos">
 
-    <!--button para volver la página de inicio-->
+
     <ImageButton
-        android:id="@+id/btnInicio"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/btnHomeAncho"
+        android:layout_height="@dimen/btnHomeAlto"
         android:src="@drawable/home"
         android:scaleType="fitCenter"
-        android:layout_gravity="top"
-        android:backgroundTint="@color/blue_main"
-        />
+        android:padding="@dimen/btnHomePaddingInside"
+        android:background="@drawable/btn_azul"
+        android:contentDescription="@string/HomePage" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
 
     <FrameLayout
-        android:layout_width="400dp"
-        android:layout_height="500dp"
-        android:layout_gravity="center_vertical"
+            android:layout_width="230dp"
+            android:layout_height="250dp"
+            android:layout_marginRight="10dp"
+            android:background="" />
 
+    <FrameLayout
+            android:layout_width="230dp"
+            android:layout_height="250dp"
+            android:background="" />
+    </LinearLayout>
 
-
-        />
 
     <Button
-        android:id="@+id/button_submit"
+        android:id="@+id/btnEmpezar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize=""
-        android:layout_marginTop="16dp"
-        android:text="Empezar" />
-
-
-</LinearLayout>
+        android:text="Empezar"
+        android:textSize="@dimen/btnEmpezar_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp" />
+    </LinearLayout>

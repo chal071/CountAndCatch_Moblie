@@ -6,4 +6,8 @@
 <dimen name="btnHomePaddingOutside">20dp</dimen>
 <dimen name="txtTimerAncho">200dp</dimen>
 <dimen name="txtTimerText">30sp</dimen>
+
+    <!--Tmaño de button Empezar-->
+    <dimen name="btnEmpezar_size">10dp</dimen>
+    <dimen name="frameMarginRight">80dp</dimen>
 </resources>
