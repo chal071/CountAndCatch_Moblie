@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.playandpaint"
+    namespace = "com.example.countandcatch"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.playandpaint"
+        applicationId = "com.example.countandcatch"
         minSdk = 27
         targetSdk = 36
         versionCode = 1
@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -45,4 +45,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation("androidx.activity:activity-ktx:1.9.2")
 }
