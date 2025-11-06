@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlayAndPaint">
         <activity
+            android:name="com.example.countandcatch.Resultado"
+            android:exported="false" />
+        <activity
             android:name=".JuegoCountActivity"
             android:exported="false" />
         <activity
