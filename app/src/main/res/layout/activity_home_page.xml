@@ -34,7 +34,7 @@
             android:layout_width="@dimen/imgPolygon"
             android:layout_height="@dimen/imgPolygon"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:src="@drawable/Polygon"
+            android:src="@drawable/polygon"
 
             ></ImageView>
 
@@ -48,7 +48,7 @@
         android:layout_gravity="bottom"
         android:src="@drawable/start"
         android:translationX="-170dp"
-        android:translationY="-50dp"/>
+        android:translationY="-50dp" />
 </LinearLayout>
 
 

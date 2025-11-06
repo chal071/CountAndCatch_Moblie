@@ -1,4 +1,4 @@
-package com.example.playandpaint
+package com.example.countandcatch
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
