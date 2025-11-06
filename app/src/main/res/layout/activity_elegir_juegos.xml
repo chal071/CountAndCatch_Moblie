@@ -17,7 +17,7 @@
         android:scaleType="fitCenter"
         android:padding="@dimen/btnHomePaddingInside"
         android:background="@drawable/btn_azul"
-        android:contentDescription="@string/HomePage" />
+        android:contentDescription="@string/home_page" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background">
+    android:background="@color/fondo">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,12 +69,6 @@
                 android:overScrollMode="never"
                 android:nestedScrollingEnabled="false" />
         </LinearLayout>
-
-        <com.example.countandcatch.LineView
-            android:id="@+id/lineView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="false" />
     </FrameLayout>
 
 </LinearLayout>

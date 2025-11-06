@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="circle">300</dimen>
-    <dimen name="imgPolygon">110</dimen>
-    <dimen name="imgStart">150</dimen>
-</resources>

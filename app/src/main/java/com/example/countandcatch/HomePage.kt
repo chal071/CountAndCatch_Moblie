@@ -1,4 +1,4 @@
-package com.example.playandpaint
+package com.example.countandcatch
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

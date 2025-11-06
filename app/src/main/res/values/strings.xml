@@ -2,4 +2,7 @@
     <string name="txt_start">Start!</string>
     <string name="app_name">Count and Catch</string>
     <string name="home_page">Volver a Home Page</string>
+    <string name="title_activity_resultado">Resultado</string>
+    <string name="aceptar">aceptar</string>
+    <string name="nombre_nino">nombre niño</string>
 </resources>

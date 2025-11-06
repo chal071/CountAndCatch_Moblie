@@ -1,4 +1,4 @@
-package com.example.playandpaint
+package com.example.countandcatch
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -11,7 +11,7 @@ class ElegirJuegos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_elegir_juegos)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainElegirJuegos)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
