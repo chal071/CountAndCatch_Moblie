@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.playandpaint"
+    namespace = "com.example.countandcatch"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.playandpaint"
+        applicationId = "com.example.countandcatch"
         minSdk = 27
         targetSdk = 36
         versionCode = 1
