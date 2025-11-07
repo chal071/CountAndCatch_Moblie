@@ -15,7 +15,7 @@
             android:name=".JuegoCountActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ElegirJuegos"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
