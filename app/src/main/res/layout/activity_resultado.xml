@@ -100,21 +100,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            style="@style/btn_aceptar"
             android:id="@+id/txtResultadoAceptar"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
             android:layout_marginStart="470dp"
             android:layout_marginEnd="470dp"
-            android:background="@drawable/btn_azul"
-            android:backgroundTint="@color/blue_main"
-            android:fontFamily="@font/poppins_black"
-            android:gravity="center"
-            android:paddingHorizontal="20dp"
-            android:text="@string/aceptar"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="50sp"
-            app:backgroundTint="@color/blue_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
