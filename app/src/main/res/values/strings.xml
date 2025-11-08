@@ -5,4 +5,6 @@
     <string name="title_activity_resultado">Resultado</string>
     <string name="aceptar">aceptar</string>
     <string name="nombre_nino">nombre niño</string>
+    <string name="resultado_errores">10</string>
+    <string name="resultado_puntos">10</string>
 </resources>
