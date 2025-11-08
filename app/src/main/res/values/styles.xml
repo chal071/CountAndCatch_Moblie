@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="btn_casa" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/blue_main</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="icon">@drawable/home</item>
+        <item name="iconGravity">start</item>
+        <item name="iconSize">24dp</item>
+    </style>
+
+    <style name="btn_aceptar">
+        <item name="backgroundTint">@color/blue_main</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:text">Aceptar</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">@font/poppins_black</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:height">100dp</item>
+    </style>
+
+</resources>
