@@ -1,54 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainHomePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/fondo"
-    tools:context=".HomePage">
+    android:background="@color/fondo">
 
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="455dp"
+        android:layout_width="@dimen/logowidth"
         android:layout_height="match_parent"
         android:src="@drawable/logo"></ImageView>
 
-    <FrameLayout
-        android:id="@+id/btnStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="100dp">
+    <ImageView
+        android:id="@+id/imgCirculo"
+        android:layout_width="@dimen/circle"
+        android:layout_height="@dimen/circle"
+        android:layout_gravity="center"
+        android:src="@drawable/btnstart"
+        android:clickable="true"
+        android:focusable="true">
 
-
-        <ImageView
-            android:id="@+id/imgCicle"
-            android:layout_width="@dimen/circle"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:src="@drawable/cicle"></ImageView>
-
-        <ImageView
-            android:id="@+id/imgPoligon"
-            android:layout_width="@dimen/imgPolygon"
-            android:layout_height="@dimen/imgPolygon"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:src="@drawable/polygon"
-
-            ></ImageView>
-
-
-    </FrameLayout>
+    </ImageView>
 
     <ImageView
         android:id="@+id/imgstart"
         android:layout_width="@dimen/imgStart"
         android:layout_height="@dimen/imgStart"
-        android:layout_gravity="bottom"
         android:src="@drawable/start"
-        android:translationX="-170dp"
-        android:translationY="-50dp" />
+        android:layout_gravity="center"
+         />
+</LinearLayout>
 </LinearLayout>
 
 
