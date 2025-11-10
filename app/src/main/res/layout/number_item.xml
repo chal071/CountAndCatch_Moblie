@@ -4,12 +4,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:id="@+id/imgItemLayout">
+    android:id="@+id/numberItemLayout">
 
-    <ImageView
-        android:id="@+id/imgItemCount"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:scaleType="fitCenter"
-        android:padding="4dp"/>
+        android:id="@+id/numberItemCount"
+        android:background="@drawable/btn_azul"
+        android:textSize="100sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+
 </LinearLayout>
