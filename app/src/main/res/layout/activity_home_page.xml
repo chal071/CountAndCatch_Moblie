@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="@dimen/logowidth"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/logowidth"
         android:src="@drawable/logo"></ImageView>
 
 <LinearLayout
@@ -19,24 +19,21 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingTop="100dp">
+
     <ImageView
         android:id="@+id/imgCirculo"
         android:layout_width="@dimen/circle"
         android:layout_height="@dimen/circle"
-        android:layout_gravity="center"
-        android:src="@drawable/btnstart"
         android:clickable="true"
-        android:focusable="true">
-
-    </ImageView>
+        android:focusable="true"
+        android:src="@drawable/btnstart"/>
 
     <ImageView
         android:id="@+id/imgstart"
         android:layout_width="@dimen/imgStart"
         android:layout_height="@dimen/imgStart"
-        android:src="@drawable/start"
         android:layout_gravity="center"
-         />
+        android:src="@drawable/start" />
 </LinearLayout>
 </LinearLayout>
 
