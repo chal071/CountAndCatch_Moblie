@@ -13,6 +13,7 @@ class NumberAdapter : RecyclerView.Adapter<NumberAdapter.VH>() {
 
     private val items = mutableListOf<Int>()
     private var itemSizePx = 0
+    private var onItemClick: ((Int) -> Unit)? = null
 
 
     fun submit(list: List<Int>) {
@@ -22,6 +23,10 @@ class NumberAdapter : RecyclerView.Adapter<NumberAdapter.VH>() {
     }
     fun setItemSize(px: Int) {
         itemSizePx = px; notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: (Int) -> Unit) {
+        onItemClick = listener
     }
 
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,6 +41,7 @@ class NumberAdapter : RecyclerView.Adapter<NumberAdapter.VH>() {
             layout.layoutParams = layout.layoutParams.apply {
                 width = itemSizePx
             }
+            tv.setOnClickListener { onItemClick?.invoke(value) }
         }
     }
 

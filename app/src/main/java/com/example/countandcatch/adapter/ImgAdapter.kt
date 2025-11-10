@@ -13,6 +13,8 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
 
     private val items = mutableListOf<ImageItem>()
     private var itemSizePx = 0
+    private var onItemClick: ((ImageItem) -> Unit)? = null
+
 
     fun submit(list: List<ImageItem>) {
         items.clear()
@@ -23,15 +25,22 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
         itemSizePx = px; notifyDataSetChanged()
     }
 
+    fun setOnItemClickListener(listener: (ImageItem) -> Unit) {
+        onItemClick = listener
+    }
+
+
+
     inner class VH(v: View) : RecyclerView.ViewHolder(v) {
         private val img = v.findViewById<ImageView>(R.id.imgItemCount)
         private val layout: ViewGroup = itemView.findViewById(R.id.imgItemLayout)
 
-        fun bind(it: ImageItem) {
-            img.setImageResource(it.drawableId)
+        fun bind(item: ImageItem) {
+            img.setImageResource(item.drawableId)
             layout.layoutParams = layout.layoutParams.apply {
                 width = itemSizePx
             }
+            img.setOnClickListener { onItemClick?.invoke(item) }
         }
     }
 
