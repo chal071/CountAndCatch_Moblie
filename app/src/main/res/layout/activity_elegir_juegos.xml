@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainElegirJuegos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".ElegirJuegos">
+    android:background="@color/fondo"
+ >
 
 
     <ImageButton
@@ -29,13 +29,35 @@
     <FrameLayout
             android:layout_width="230dp"
             android:layout_height="250dp"
-            android:layout_marginRight="10dp"
-            android:background="" />
+            android:layout_marginRight="@dimen/frameMarginRight"
+            android:background="" >
+
+        <ImageView
+            android:id="@+id/imgJuegoCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src=""
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+    </FrameLayout>
 
     <FrameLayout
             android:layout_width="230dp"
             android:layout_height="250dp"
-            android:background="" />
+            android:background="@color/blue_main" >
+
+        <ImageView
+            android:id="@+id/imgJuegoCatch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/count"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+    </FrameLayout>
     </LinearLayout>
 
 
