@@ -7,8 +7,7 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:background="@color/fondo"
- >
-
+    >
 
     <ImageButton
         android:layout_width="@dimen/btnHomeAncho"
@@ -24,49 +23,48 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/mbLinearLayout"
+        >
 
     <FrameLayout
-            android:layout_width="230dp"
-            android:layout_height="250dp"
+            android:layout_width="430dp"
+            android:layout_height="450dp"
             android:layout_marginRight="@dimen/frameMarginRight"
-            android:background="" >
+        >
 
         <ImageView
-            android:id="@+id/imgJuegoCount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src=""
             android:clickable="true"
-            android:focusable="true"
             />
-
     </FrameLayout>
 
     <FrameLayout
-            android:layout_width="230dp"
-            android:layout_height="250dp"
-            android:background="@color/blue_main" >
+            android:layout_width="430dp"
+            android:layout_height="450dp"
+
+        >
 
         <ImageView
-            android:id="@+id/imgJuegoCatch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/count"
             android:clickable="true"
-            android:focusable="true"
             />
 
     </FrameLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnEmpezar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Empezar"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="EMPEZAR"
         android:textSize="@dimen/btnEmpezar_size"
+        android:backgroundTint="@color/blue_main"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="@dimen/marginBottom" />
+
     </LinearLayout>

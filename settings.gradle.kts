@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "playAndPaint"
+rootProject.name = "countAndCatch"
 include(":app")
  

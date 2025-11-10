@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainResultadoS"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    tools:context="com.example.countandcatch.ResultadoActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/txtResultadoNombreNino"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginStart="408dp"
+            android:layout_marginEnd="408dp"
+            android:background="@drawable/btn_azul"
+            android:fontFamily="@font/poppins_black"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:text="@string/nombre_nino"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgResultadoCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_marginTop="245dp"
+            android:layout_marginBottom="245dp"
+            android:contentDescription="resultado_check_puntos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/check" />
+
+
+        <TextView
+            android:id="@+id/txtResultadoPuntos"
+            android:layout_width="197dp"
+            android:layout_height="222dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="203dp"
+            android:layout_marginBottom="175dp"
+            android:contentDescription="resultado_cruz_errores"
+            android:fontFamily="@font/poppins_black"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:text="@string/resultado_puntos"
+            android:textAllCaps="true"
+            android:textColor="@color/green_correct"
+            android:textSize="150sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtResultadoAceptar"
+            app:layout_constraintStart_toEndOf="@+id/imgResultadoCheck"
+            app:layout_constraintTop_toBottomOf="@+id/txtResultadoNombreNino" />
+
+
+        <ImageView
+            android:id="@+id/imgResultadoCruz"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="175dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtResultadoAceptar"
+            app:layout_constraintEnd_toStartOf="@+id/txtResultadoErrores"
+            app:layout_constraintTop_toBottomOf="@+id/txtResultadoNombreNino"
+            app:srcCompat="@drawable/cross" />
+
+        <TextView
+            android:id="@+id/txtResultadoErrores"
+            android:layout_width="186dp"
+            android:layout_height="227dp"
+            android:layout_marginTop="268dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="245dp"
+            android:fontFamily="@font/poppins_black"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:text="@string/resultado_errores"
+            android:textAllCaps="true"
+            android:textColor="@color/red_errors"
+            android:textSize="150sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            style="@style/btn_aceptar"
+            android:id="@+id/txtResultadoAceptar"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="470dp"
+            android:layout_marginEnd="470dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

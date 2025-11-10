@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="btnHomeAncho">50</dimen>
-    <dimen name="circle">300</dimen>
-    <dimen name="imgPolygon">110</dimen>
-    <dimen name="imgStart">150</dimen>
-    <dimen name="btnHomeAlto">50dp</dimen>
+    <dimen name="btnHomeAncho">80dp</dimen>
+    <dimen name="circle">400dp</dimen>
+    <dimen name="imgTriangulo">130dp</dimen>
+    <dimen name="imgStart">200dp</dimen>
+    <dimen name="btnHomeAlto">80dp</dimen>
     <dimen name="btnHomePaddingInside">10dp</dimen>
     <dimen name="btnHomePaddingOutside">20dp</dimen>
+    <dimen name="btnContinua">350dp</dimen>
     <dimen name="txtTimerAncho">200dp</dimen>
     <dimen name="txtTimerText">30sp</dimen>
-    <dimen name="btnEmpezar_size">10dp</dimen>
+    <dimen name="btnEmpezar_size">25sp</dimen>
     <dimen name="frameMarginRight">80dp</dimen>
+    <dimen name="Escribetunombre">150dp</dimen>
+    <dimen name="EscribetunombreWidth">800dp</dimen>
+    <dimen name="logowidth">800dp</dimen>
+    <dimen name="marginBottom">40dp</dimen>
+    <dimen name="mbLinearLayout">20dp</dimen>
 </resources>
