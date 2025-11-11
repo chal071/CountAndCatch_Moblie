@@ -10,6 +10,7 @@
     >
 
     <ImageButton
+        android:id="@+id/btnHomeEJ"
         android:layout_width="@dimen/btnHomeAncho"
         android:layout_height="@dimen/btnHomeAlto"
         android:src="@drawable/home"
@@ -28,8 +29,9 @@
         >
 
     <FrameLayout
-            android:layout_width="430dp"
-            android:layout_height="450dp"
+            android:id="@+id/frameJuegoCatchEJ"
+            android:layout_width="480dp"
+            android:layout_height="500dp"
             android:layout_marginRight="@dimen/frameMarginRight"
         >
 
@@ -37,12 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
+
             />
     </FrameLayout>
 
     <FrameLayout
-            android:layout_width="430dp"
-            android:layout_height="450dp"
+            android:id="@+id/frameJuegoCountEJ"
+            android:layout_width="480dp"
+            android:layout_height="500dp"
 
         >
 
@@ -51,6 +55,8 @@
             android:layout_height="match_parent"
             android:src="@drawable/count"
             android:clickable="true"
+            android:scaleType="centerCrop"
+
             />
 
     </FrameLayout>
@@ -58,9 +64,9 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnEmpezar"
-        android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:id="@+id/btnEmpezarEJ"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:text="EMPEZAR"
         android:textSize="@dimen/btnEmpezar_size"
         android:backgroundTint="@color/blue_main"
