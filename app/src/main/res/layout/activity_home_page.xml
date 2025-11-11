@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainHomePage"
+    android:id="@+id/mainHP"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/imgLogo"
+        android:id="@+id/imgLogoHP"
         android:layout_width="@dimen/logowidth"
         android:layout_height="@dimen/logowidth"
         android:src="@drawable/logo"></ImageView>
@@ -29,7 +29,7 @@
         android:src="@drawable/btnstart"/>
 
     <ImageView
-        android:id="@+id/imgstart"
+        android:id="@+id/imgstartHP"
         android:layout_width="@dimen/imgStart"
         android:layout_height="@dimen/imgStart"
         android:layout_gravity="center"
