@@ -19,7 +19,7 @@ class HomePageActivity : AppCompatActivity() {
         val imgCirculo = findViewById<ImageView>(R.id.imgCirculo)
 
         imgCirculo.setOnClickListener {
-            val intent = Intent(this, InicioSesionActivity::class.java)
+            val intent = Intent(this, JuegoCountActivity::class.java)
             startActivity(intent)
         }
     }
