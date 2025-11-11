@@ -7,7 +7,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countandcatch.R
 import com.example.countandcatch.data.ImageItem
-import com.example.countandcatch.data.PairData
 
 class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
 
@@ -15,21 +14,30 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
     private var itemSizePx = 0
     private var onItemClick: ((ImageItem) -> Unit)? = null
 
-
     fun submit(list: List<ImageItem>) {
         items.clear()
         items.addAll(list)
         notifyDataSetChanged()
     }
+
     fun setItemSize(px: Int) {
-        itemSizePx = px; notifyDataSetChanged()
+        itemSizePx = px
+        notifyDataSetChanged()
     }
 
     fun setOnItemClickListener(listener: (ImageItem) -> Unit) {
         onItemClick = listener
     }
 
+    fun removeByPairId(pairId: Int) {
+        val idx = items.indexOfFirst { it.pairId == pairId }
+        if (idx != -1) {
+            items.removeAt(idx)
+            notifyItemRemoved(idx)
+        }
+    }
 
+    fun isEmpty(): Boolean = items.isEmpty()
 
     inner class VH(v: View) : RecyclerView.ViewHolder(v) {
         private val img = v.findViewById<ImageView>(R.id.imgItemCount)
@@ -44,10 +52,8 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.img_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.img_item, parent, false)
         return VH(view)
     }
 
