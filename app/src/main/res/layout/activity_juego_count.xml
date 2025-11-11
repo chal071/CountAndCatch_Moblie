@@ -13,7 +13,7 @@
         android:padding="@dimen/btnHomePaddingOutside">
 
         <ImageButton
-            android:id="@+id/btnHome"
+            android:id="@+id/btnHomeJC"
             android:layout_width="@dimen/btnHomeAncho"
             android:layout_height="@dimen/btnHomeAlto"
             android:layout_alignParentStart="true"
@@ -25,7 +25,7 @@
             android:src="@drawable/home" />
 
         <TextView
-            android:id="@+id/timerText"
+            android:id="@+id/timerTextJC"
             android:layout_width="@dimen/txtTimerAncho"
             android:layout_height="@dimen/btnHomeAlto"
             android:layout_centerInParent="true"
