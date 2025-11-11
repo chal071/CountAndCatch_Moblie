@@ -4,8 +4,8 @@
     android:id="@+id/mainJuegoCount"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/fondo">
+    android:background="@color/fondo"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,59 +16,49 @@
             android:id="@+id/btnHome"
             android:layout_width="@dimen/btnHomeAncho"
             android:layout_height="@dimen/btnHomeAlto"
-            android:src="@drawable/home"
-            android:scaleType="centerInside"
-            android:padding="@dimen/btnHomePaddingInside"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:background="@drawable/btn_azul"
             android:contentDescription="@string/home_page"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true" />
+            android:padding="@dimen/btnHomePaddingInside"
+            android:scaleType="centerInside"
+            android:src="@drawable/home" />
 
         <TextView
             android:id="@+id/timerText"
             android:layout_width="@dimen/txtTimerAncho"
             android:layout_height="@dimen/btnHomeAlto"
-            android:text="00:00"
-            android:textSize="@dimen/txtTimerText"
-            android:gravity="center"
-            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
             android:background="@drawable/btn_azul"
-            android:layout_centerInParent="true" />
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txtTimerText" />
     </RelativeLayout>
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/contentLayoutJuegoCount"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <LinearLayout
-            android:id="@+id/contentLayoutJuegoCount"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJuegoCountTop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center_vertical">
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvJuegoCountLeft"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:overScrollMode="never"
-                android:nestedScrollingEnabled="false" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
-            <View
-                android:layout_width="16dp"
-                android:layout_height="match_parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvJuegoCountRight"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:overScrollMode="never"
-                android:nestedScrollingEnabled="false" />
-        </LinearLayout>
-    </FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJuegoCountBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </LinearLayout>
