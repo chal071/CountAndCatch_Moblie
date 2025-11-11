@@ -10,7 +10,7 @@
     <dimen name="btnContinua">350dp</dimen>
     <dimen name="txtTimerAncho">200dp</dimen>
     <dimen name="txtTimerText">30sp</dimen>
-    <dimen name="btnEmpezar_size">25sp</dimen>
+    <dimen name="btnEmpezar_size">30sp</dimen>
     <dimen name="frameMarginRight">80dp</dimen>
     <dimen name="Escribetunombre">150dp</dimen>
     <dimen name="EscribetunombreWidth">800dp</dimen>
