@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "Chenxiao",
+    "tiempo_partida": 45,
+    "errores": 1,
+    "puntuacion": 80,
+    "fecha": "2025-10-30",
+    "juego": 1,
+    "dificultad": 1
+  },
+  {
+    "nombre": "Qiaoqiao",
+    "tiempo_partida": 52,
+    "errores": 0,
+    "puntuacion": 100,
+    "fecha": "2025-10-30",
+    "juego": 2,
+    "dificultad": 2
+  }
+]
