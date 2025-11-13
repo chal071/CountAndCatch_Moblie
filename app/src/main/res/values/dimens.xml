@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="btnHomeAncho">80dp</dimen>
-    <dimen name="circle">400dp</dimen>
+    <dimen name="circle">430dp</dimen>
     <dimen name="imgTriangulo">130dp</dimen>
     <dimen name="imgStart">200dp</dimen>
     <dimen name="btnHomeAlto">80dp</dimen>
@@ -12,9 +12,9 @@
     <dimen name="txtTimerText">30sp</dimen>
     <dimen name="btnEmpezar_size">30sp</dimen>
     <dimen name="frameMarginRight">80dp</dimen>
-    <dimen name="Escribetunombre">150dp</dimen>
+    <dimen name="Escribetunombre">120dp</dimen>
     <dimen name="EscribetunombreWidth">800dp</dimen>
-    <dimen name="logowidth">800dp</dimen>
+    <dimen name="logowidth">820dp</dimen>
     <dimen name="marginBottom">40dp</dimen>
     <dimen name="mbLinearLayout">20dp</dimen>
 </resources>
