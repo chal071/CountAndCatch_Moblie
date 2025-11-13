@@ -1,5 +1,6 @@
 package com.example.countandcatch
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 
 
 class ElegirJuegosActivity : AppCompatActivity() {
@@ -27,9 +29,9 @@ class ElegirJuegosActivity : AppCompatActivity() {
             insets
         }
 
-        frameJuegoCatch = findViewById(R.id.frameJuegoCatch)
-        frameJuegoCount = findViewById(R.id.frameJuegoCount)
-        btnEmpezar = findViewById(R.id.btnEmpezar)
+        frameJuegoCatch = findViewById(R.id.frameJuegoCatchEJ)
+        frameJuegoCount = findViewById(R.id.frameJuegoCountEJ)
+        btnEmpezar = findViewById(R.id.btnEmpezarEJ)
 
         frameJuegoCount.setOnClickListener {
             selectedJuego = "A"
@@ -43,7 +45,7 @@ class ElegirJuegosActivity : AppCompatActivity() {
 
         btnEmpezar.setOnClickListener {
             when (selectedJuego) {
-
+               
                 else -> Toast.makeText(this, "Elegir un juego, por favor.", Toast.LENGTH_SHORT).show()
             }
         }
@@ -51,7 +53,20 @@ class ElegirJuegosActivity : AppCompatActivity() {
     }
 
     private fun highLightSelection(selected: FrameLayout, other: FrameLayout) {
+        other.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .translationZ(0f)
+            .setDuration(150)
+            .start()
 
+
+        selected.animate()
+            .scaleX(1.08f)
+            .scaleY(1.08f)
+            .translationZ(10f)
+            .setDuration(200)
+            .start()
     }
 }
 
