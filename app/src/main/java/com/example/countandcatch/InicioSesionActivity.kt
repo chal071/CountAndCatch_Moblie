@@ -13,13 +13,13 @@ class InicioSesionActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_inicio_sesion)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainInicioSesion)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainIS)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val btnHome = findViewById<ImageButton>(R.id.btnHome)
+        val btnHome = findViewById<ImageButton>(R.id.btnHomeIS)
 
         btnHome.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()

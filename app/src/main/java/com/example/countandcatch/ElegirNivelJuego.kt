@@ -1,4 +1,4 @@
-package com.example.jocprojecteguillem
+package com.example.countandcatch
 
 import android.content.Intent
 import android.os.Bundle
