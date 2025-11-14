@@ -1,5 +1,7 @@
 package com.example.countandcatch.data
 
+import java.io.Serializable
+
 data class Partida(
     val nombre: String,
     val tiempo_partida: Int,
@@ -7,4 +9,4 @@ data class Partida(
     val fecha: String,
     val juego: Int,
     val dificultad: Int
-)
+): Serializable

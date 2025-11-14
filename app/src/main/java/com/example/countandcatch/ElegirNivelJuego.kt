@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.countandcatch.R
+import com.example.countandcatch.data.Partida
 
-class MainActivity : AppCompatActivity() {
-    private var nivelSeleccionado: String? = null
+class ElegirNivelJuego : AppCompatActivity() {
+    private var nivelSeleccionado: Int? = null
+    private var partida: Partida? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_elegir_nivel_juego)
+
+
+        partida = intent.getSerializableExtra("partida") as? Partida
 
         val btnFacil = findViewById<Button>(R.id.btnJcFacil)
         val btnIntermedio = findViewById<Button>(R.id.btnJcIntermedio)
@@ -20,24 +24,38 @@ class MainActivity : AppCompatActivity() {
         val btnContinuar = findViewById<Button>(R.id.btnJcContinuar)
 
         btnFacil.setOnClickListener {
-            nivelSeleccionado = "Fácil"
+            nivelSeleccionado = 1
         }
 
         btnIntermedio.setOnClickListener {
-            nivelSeleccionado = "Intermedio"
+            nivelSeleccionado = 2
         }
 
         btnDificil.setOnClickListener {
-            nivelSeleccionado = "Difícil"
+            nivelSeleccionado = 3
         }
 
         btnContinuar.setOnClickListener {
-            // Si no eligió nivel, mostramos aviso y salimos
+
             if (nivelSeleccionado == null) {
                 Toast.makeText(this, "Selecciona un nivel antes de continuar", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-        }
 
+            val base = partida
+            if (base == null) {
+                Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+            val updated = base.copy(
+                dificultad = nivelSeleccionado!!
+            )
+
+            val intent = Intent(this, JuegoCountActivity::class.java)
+            intent.putExtra("partida", updated)
+            startActivity(intent)
+        }
     }
 }
