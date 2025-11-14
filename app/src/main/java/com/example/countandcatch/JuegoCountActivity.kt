@@ -68,6 +68,7 @@ class JuegoCountActivity : AppCompatActivity() {
 
     private val timerRunnable = object : Runnable {
         override fun run() {
+            timerText = findViewById(R.id.timerTextJC)
             val now = System.currentTimeMillis()
             elapsedSeconds = ((now - startTime) / 1000).toInt()
             timerText.text = "${elapsedSeconds}s"
