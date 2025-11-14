@@ -34,7 +34,9 @@
         <activity
             android:name=".ElegirJuegosActivity"
             android:exported="false"/>
-
+        <activity
+            android:name=".ElegirNivelJuego"
+            android:exported="false"/>
     </application>
 
 </manifest>

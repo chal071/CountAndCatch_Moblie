@@ -38,7 +38,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
+            android:clickable="false"
 
             />
     </FrameLayout>
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/count"
-            android:clickable="true"
+            android:clickable="false"
             android:scaleType="centerCrop"
 
             />
