@@ -14,6 +14,7 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
     private var itemSizePx = 0
     private var onItemClick: ((ImageItem) -> Unit)? = null
 
+
     fun submit(list: List<ImageItem>) {
         items.clear()
         items.addAll(list)
@@ -62,4 +63,7 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun getCount(): Int = items.size
+
 }

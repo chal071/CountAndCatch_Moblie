@@ -43,11 +43,11 @@ class ElegirNivelJuego : AppCompatActivity() {
             }
 
             val base = partida
+
             if (base == null) {
                 Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
 
             val updated = base.copy(
                 dificultad = nivelSeleccionado!!
