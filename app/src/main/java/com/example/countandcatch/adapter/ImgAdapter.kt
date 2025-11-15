@@ -1,5 +1,6 @@
 package com.example.countandcatch.adapter
 
+import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countandcatch.R
 import com.example.countandcatch.data.ImageItem
+import android.view.ViewOutlineProvider
 
 class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
 
@@ -60,6 +62,7 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
             val scale = if (isSelected) 1.1f else 1f
             itemView.scaleX = scale
             itemView.scaleY = scale
+
 
             img.setOnClickListener { onItemClick?.invoke(item) }
         }

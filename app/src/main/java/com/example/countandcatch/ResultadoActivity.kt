@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.countandcatch.data.Partida
+import com.example.countandcatch.utils.JsonHelper
 
 class ResultadoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,5 +37,14 @@ class ResultadoActivity : AppCompatActivity() {
         }
 
         txtResultadoNombreNino.text = "${partida.nombre}"
+
+        guardarPartida(partida)
     }
+
+    private fun guardarPartida(partida: Partida) {
+        val lista = JsonHelper.loadList<Partida>(this).toMutableList()
+        lista.add(partida)
+        JsonHelper.saveList(this, lista)
+    }
+
 }
