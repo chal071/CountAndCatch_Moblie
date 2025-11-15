@@ -14,6 +14,8 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
     private var itemSizePx = 0
     private var onItemClick: ((ImageItem) -> Unit)? = null
 
+    private var selectedPairId: Int? = null
+
 
     fun submit(list: List<ImageItem>) {
         items.clear()
@@ -26,6 +28,10 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
         notifyDataSetChanged()
     }
 
+    fun setSelectedPair(pairId: Int?) {
+        selectedPairId = pairId
+        notifyDataSetChanged()
+    }
     fun setOnItemClickListener(listener: (ImageItem) -> Unit) {
         onItemClick = listener
     }
@@ -49,6 +55,12 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
             layout.layoutParams = layout.layoutParams.apply {
                 width = itemSizePx
             }
+
+            val isSelected = item.pairId == selectedPairId
+            val scale = if (isSelected) 1.1f else 1f
+            itemView.scaleX = scale
+            itemView.scaleY = scale
+
             img.setOnClickListener { onItemClick?.invoke(item) }
         }
     }

@@ -140,10 +140,12 @@ class JuegoCountActivity : AppCompatActivity() {
 
         adapterImg.setOnItemClickListener { image ->
             selectedImage = image
+            adapterImg.setSelectedPair(image.pairId)
             checkMatch()
         }
         adapterNumber.setOnItemClickListener { image ->
             selectedNumber = image
+            adapterNumber.setSelectedPair(image.pairId)
             checkMatch()
         }
     }
@@ -198,6 +200,8 @@ class JuegoCountActivity : AppCompatActivity() {
 
             selectedImage = null
             selectedNumber = null
+            adapterImg.setSelectedPair(null)
+            adapterNumber.setSelectedPair(null)
         }
 
 }
