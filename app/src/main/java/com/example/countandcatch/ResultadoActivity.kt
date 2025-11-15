@@ -29,8 +29,12 @@ class ResultadoActivity : AppCompatActivity() {
             txtResultadoErrores.text = ""
             return
         }
+        if (partida.errores == 0){
+            txtResultadoErrores.text = "0"
+        } else {
+            txtResultadoErrores.text = "${partida.errores}"
+        }
 
-        txtResultadoNombreNino.text = "Nombre: ${partida.nombre}"
-        txtResultadoErrores.text = "Errores: ${partida.errores}"
+        txtResultadoNombreNino.text = "${partida.nombre}"
     }
 }

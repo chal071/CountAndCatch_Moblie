@@ -56,13 +56,13 @@ class ElegirJuegosActivity : AppCompatActivity() {
             when (selectedJuego) {
                 "A" -> {
                     val updated = basePartida.copy(juego = 1)
-                    val intent = Intent(this, JuegoCountActivity::class.java)
+                    val intent = Intent(this, ElegirNivelJuego::class.java)
                     intent.putExtra("partida", updated)
                     startActivity(intent)
                 }
                 "B" -> {
                     val updated = basePartida.copy(juego = 2)
-                    val intent = Intent(this, JuegoCatchActivity::class.java)
+                    val intent = Intent(this, ElegirNivelJuego::class.java)
                     intent.putExtra("partida", updated)
                     startActivity(intent)
                 }
