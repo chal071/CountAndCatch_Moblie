@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:layout_margin="12dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/btn_azul">
+
+    <TextView
+        android:id="@+id/tvRankNumber"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvPlayerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Chenxiao"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:paddingStart="10dp"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/tvPlayerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tiempo: 42s · Errores: 1"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
