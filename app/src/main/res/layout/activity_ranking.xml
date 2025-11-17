@@ -1,10 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/mainRanking"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fondo"
     tools:context=".RankingActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/btnHomePaddingOutside">
+
+        <ImageButton
+            android:id="@+id/btnHomeRanking"
+            android:layout_width="@dimen/btnHomeAncho"
+            android:layout_height="@dimen/btnHomeAlto"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_azul"
+            android:contentDescription="@string/home_page"
+            android:padding="@dimen/btnHomePaddingInside"
+            android:scaleType="centerInside"
+            android:src="@drawable/home" />
+
+        <TextView
+            android:layout_width="@dimen/tvRanking"
+            android:layout_height="@dimen/btnHomeAlto"
+            android:text="Ranking"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/txtRanking"
+            android:background="@drawable/btn_azul"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvJuego"
+            android:textAlignment="textEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Count"
+            android:textSize="@dimen/txtRanking"
+            android:textColor="@color/blue_main"
+            android:textAllCaps="true"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/lyStars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="@dimen/StarsRanking"
+                android:layout_height="@dimen/StarsRanking"
+                android:src="@drawable/star" />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="@dimen/StarsRanking"
+                android:layout_height="@dimen/StarsRanking"
+                android:src="@drawable/star" />
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="@dimen/StarsRanking"
+                android:layout_height="@dimen/StarsRanking"
+                android:src="@drawable/star" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRanking"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="12dp"/>
+
+</LinearLayout>

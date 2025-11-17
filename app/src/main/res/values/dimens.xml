@@ -17,4 +17,7 @@
     <dimen name="logowidth">820dp</dimen>
     <dimen name="marginBottom">40dp</dimen>
     <dimen name="mbLinearLayout">20dp</dimen>
+    <dimen name="txtRanking">50sp</dimen>
+    <dimen name="tvRanking">400dp</dimen>
+    <dimen name="StarsRanking">50dp</dimen>
 </resources>

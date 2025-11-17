@@ -1,6 +1,8 @@
 package com.example.countandcatch
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,8 +41,16 @@ class ResultadoActivity : AppCompatActivity() {
         txtResultadoNombreNino.text = "${partida.nombre}"
 
         guardarPartida(partida)
-    }
 
+        val btnAceptar = findViewById<Button>(R.id.btnAceptar)
+
+        btnAceptar.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            intent.putExtra("partida", partida)
+            startActivity(intent)
+        }
+
+    }
     private fun guardarPartida(partida: Partida) {
         val lista = JsonHelper.loadList<Partida>(this).toMutableList()
         lista.add(partida)
