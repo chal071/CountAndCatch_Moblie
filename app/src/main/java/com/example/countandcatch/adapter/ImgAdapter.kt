@@ -1,5 +1,6 @@
 package com.example.countandcatch.adapter
 
+import android.graphics.Outline
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,12 +8,16 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countandcatch.R
 import com.example.countandcatch.data.ImageItem
+import android.view.ViewOutlineProvider
 
 class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
 
     private val items = mutableListOf<ImageItem>()
     private var itemSizePx = 0
     private var onItemClick: ((ImageItem) -> Unit)? = null
+
+    private var selectedPairId: Int? = null
+
 
     fun submit(list: List<ImageItem>) {
         items.clear()
@@ -25,6 +30,10 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
         notifyDataSetChanged()
     }
 
+    fun setSelectedPair(pairId: Int?) {
+        selectedPairId = pairId
+        notifyDataSetChanged()
+    }
     fun setOnItemClickListener(listener: (ImageItem) -> Unit) {
         onItemClick = listener
     }
@@ -48,6 +57,13 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
             layout.layoutParams = layout.layoutParams.apply {
                 width = itemSizePx
             }
+
+            val isSelected = item.pairId == selectedPairId
+            val scale = if (isSelected) 1.1f else 1f
+            itemView.scaleX = scale
+            itemView.scaleY = scale
+
+
             img.setOnClickListener { onItemClick?.invoke(item) }
         }
     }
@@ -62,4 +78,7 @@ class ImgAdapter : RecyclerView.Adapter<ImgAdapter.VH>() {
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun getCount(): Int = items.size
+
 }

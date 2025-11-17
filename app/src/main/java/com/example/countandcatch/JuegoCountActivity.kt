@@ -15,20 +15,19 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countandcatch.adapter.ImgAdapter
-import com.example.countandcatch.adapter.NumberAdapter
 import com.example.countandcatch.data.ImageItem
 import com.example.countandcatch.data.PairData
 import com.example.countandcatch.data.Partida
 
 class JuegoCountActivity : AppCompatActivity() {
 
-    private var pairCount = 4
+    private var pairCount = 0;
 
     private var selectedImage: ImageItem? = null
-    private var selectedNumber: Int? = null
+    private var selectedNumber: ImageItem? = null
 
     private lateinit var adapterImg: ImgAdapter
-    private lateinit var adapterNumber: NumberAdapter
+    private lateinit var adapterNumber: ImgAdapter
 
     private val displayMetrics = Resources.getSystem().displayMetrics
     private val widthPx = displayMetrics.widthPixels
@@ -54,6 +53,14 @@ class JuegoCountActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        partida = intent.getSerializableExtra("partida") as? Partida
+
+        pairCount = when (partida?.dificultad) {
+            1 -> 3
+            2 -> 4
+            3 -> 5
+            else -> 5
+        }
 
         volverPaginaDeInicio()
 
@@ -63,7 +70,6 @@ class JuegoCountActivity : AppCompatActivity() {
         startTime = System.currentTimeMillis()
         handler.post(timerRunnable)
 
-        partida = intent.getSerializableExtra("partida") as? Partida
     }
 
     private val timerRunnable = object : Runnable {
@@ -90,31 +96,38 @@ class JuegoCountActivity : AppCompatActivity() {
         return sdf.format(java.util.Date())
     }
 
-    private fun generateShuffled(pairCount: Int): Pair<List<ImageItem>, List<Int>> {
+    private fun generateShuffled(pairCount: Int): Pair<List<ImageItem>, List<ImageItem>> {
         val selectedIds = PairData.pairMap.keys.shuffled().take(pairCount)
 
-        val images = selectedIds.map { id ->
+        val imagesTop = selectedIds.map { id ->
             ImageItem(id, PairData.pairMap[id]!!.random())
         }.shuffled()
 
-        val numbers = selectedIds.shuffled()
+        val imagesBottom = selectedIds.map { id ->
+            ImageItem(id, numeroDrawableFor(id))
+        }.shuffled()
 
-        return images to numbers
+        return imagesTop to imagesBottom
     }
 
-    private fun inicializarListasDeJuego(numList: List<Int>, imgList: List<ImageItem>) {
+    private fun inicializarListasDeJuego(
+        numList: List<ImageItem>,
+        imgList: List<ImageItem>
+    ) {
         val rvImage = findViewById<RecyclerView>(R.id.rvJuegoCountTop)
         val rvNumber = findViewById<RecyclerView>(R.id.rvJuegoCountBottom)
 
         adapterImg = ImgAdapter()
-        adapterNumber = NumberAdapter()
+        adapterNumber = ImgAdapter()
 
-        rvImage.layoutManager = object : LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
-            override fun canScrollHorizontally() = false
-        }
-        rvNumber.layoutManager = object : LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
-            override fun canScrollHorizontally() = false
-        }
+        rvImage.layoutManager =
+            object : LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
+                override fun canScrollHorizontally() = false
+            }
+        rvNumber.layoutManager =
+            object : LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) {
+                override fun canScrollHorizontally() = false
+            }
 
         rvImage.adapter = adapterImg
         rvNumber.adapter = adapterNumber
@@ -128,23 +141,36 @@ class JuegoCountActivity : AppCompatActivity() {
 
         adapterImg.setOnItemClickListener { image ->
             selectedImage = image
+            adapterImg.setSelectedPair(image.pairId)
             checkMatch()
         }
-        adapterNumber.setOnItemClickListener { number ->
-            selectedNumber = number
+        adapterNumber.setOnItemClickListener { image ->
+            selectedNumber = image
+            adapterNumber.setSelectedPair(image.pairId)
             checkMatch()
         }
     }
+
+
+    private fun numeroDrawableFor(id: Int): Int = when (id) {
+        1 -> R.drawable.num1
+        2 -> R.drawable.num2
+        3 -> R.drawable.num3
+        4 -> R.drawable.num4
+        5 -> R.drawable.num5
+        else -> R.drawable.num1
+    }
+
 
     private fun checkMatch() {
         val img = selectedImage
         val num = selectedNumber
 
         if (img != null && num != null) {
-            if (img.pairId == num) {
+            if (img.pairId == num.pairId) {
                 Toast.makeText(this, "✅ CORRECT", Toast.LENGTH_SHORT).show()
                 adapterImg.removeByPairId(img.pairId)
-                adapterNumber.removeByValue(num)
+                adapterNumber.removeByPairId(num.pairId)
 
                 if (adapterImg.isEmpty() && adapterNumber.isEmpty()) {
                     handler.removeCallbacks(timerRunnable)
@@ -160,6 +186,13 @@ class JuegoCountActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     Toast.makeText(this, "🎉 FINISH", Toast.LENGTH_SHORT).show()
+                } else {
+                    val newCount = adapterImg.getCount()
+                    if (newCount > 0) {
+                        val newSize = widthPx / newCount - 4
+                        adapterImg.setItemSize(newSize)
+                        adapterNumber.setItemSize(newSize)
+                    }
                 }
             } else {
                 errores += 1
@@ -168,8 +201,11 @@ class JuegoCountActivity : AppCompatActivity() {
 
             selectedImage = null
             selectedNumber = null
+            adapterImg.setSelectedPair(null)
+            adapterNumber.setSelectedPair(null)
         }
-    }
+
+}
 
     override fun onDestroy() {
         super.onDestroy()
