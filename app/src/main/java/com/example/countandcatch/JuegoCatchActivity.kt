@@ -48,23 +48,41 @@ class JuegoCatchActivity : AppCompatActivity() {
         val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
 
         btnStart.setOnClickListener {
-            Executors.newSingleThreadScheduledExecutor().schedule({
-                startGame(countdownTimer, background, basketSlide, appleFall)
-                }, 2, TimeUnit.SECONDS)
+            btnStart.visibility = android.view.View.GONE
+            startGame(countdownTimer, background, basketSlide, appleFall)
         }
     }
 
-    private fun startGame(countdownTimer: TextView, background: ImageView, basketSlide: ImageView, appleFall: ImageView){
+    private fun startGame(countdownTimer: TextView, background: ImageView,
+                          basketSlide: ImageView, appleFall: ImageView) {
         manageCountdown(countdownTimer)
+        slideBasket(basketSlide, background)
         dropItem(background, basketSlide, appleFall)
+    }
+
+    private fun manageCountdown(countdownTimer: TextView) {
+        timer?.cancel()
+
+        timer = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisLeft: Long) {
+                val seconds = (millisLeft / 1000).toInt()
+                val minutes = seconds / 60
+                val secs = seconds % 60
+                countdownTimer.text = String.format("%d:%02d", minutes, secs)
+            }
+
+            override fun onFinish() {
+                countdownTimer.text = "0:00"
+                isGameRunning = false;
+            }
+        }.start()
     }
 
     private fun slideBasket(basketSlide: ImageView, background: ImageView) {
         val minX = background.x
         val maxX = background.x + background.width - basketSlide.width
 
-        @SuppressLint("ClickableViewAccessibility")
-        basketSlide.setOnTouchListener { view, event ->
+        @SuppressLint("ClickableViewAccessibility") basketSlide.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     dX = view.x - event.rawX
@@ -80,25 +98,6 @@ class JuegoCatchActivity : AppCompatActivity() {
             }
             true
         }
-    }
-
-    private fun manageCountdown(countdownTimer: TextView) {
-        timer?.cancel()
-
-        timer = object : CountDownTimer(60000, 1000) {
-            override fun onTick(millisLeft: Long) {
-
-                val seconds = (millisLeft / 1000).toInt()
-                val minutes = seconds / 60
-                val secs = seconds % 60
-                countdownTimer.text = String.format("%d:%02d", minutes, secs)
-            }
-
-            override fun onFinish() {
-                countdownTimer.text = "0:00"
-                isGameRunning = false;
-            }
-        }.start()
     }
 
     private fun dropItem(background: ImageView, basket: ImageView, item: ImageView) {

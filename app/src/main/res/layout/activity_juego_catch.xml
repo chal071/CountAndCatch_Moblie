@@ -17,9 +17,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/catchImgBtnStart"
-            android:visibility="visible"
+            android:elevation="10dp"
             android:layout_width="371dp"
             android:layout_height="339dp"
             android:layout_gravity="center"
