@@ -1,4 +1,4 @@
-package com.example.playandpaint
+package com.example.countandcatch
 
 import org.junit.Test
 

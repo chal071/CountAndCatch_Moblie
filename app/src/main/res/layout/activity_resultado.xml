@@ -101,9 +101,8 @@
 
         <Button
             style="@style/btn_aceptar"
-            android:id="@+id/btnAceptar"
+            android:id="@+id/txtResultadoAceptar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="470dp"
             android:layout_marginEnd="470dp"
             app:layout_constraintBottom_toBottomOf="parent"
