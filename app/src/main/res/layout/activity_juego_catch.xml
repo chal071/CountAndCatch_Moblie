@@ -18,11 +18,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
+            android:id="@+id/catchImgBtnStart"
+            android:visibility="visible"
+            android:layout_width="371dp"
+            android:layout_height="339dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/btnstart"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="430dp"
+            app:layout_constraintTop_toTopOf="@+id/catchTxtTimer"
+            app:layout_constraintStart_toStartOf="@+id/imgCatchFondo"/>
+
+        <ImageButton
             android:id="@+id/btnHome"
             android:layout_width="@dimen/btnHomeAncho"
             android:layout_height="@dimen/btnHomeAlto"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_margin="0dp"
             android:background="@drawable/btn_azul"
             android:contentDescription="@string/home_page"
             android:padding="@dimen/btnHomePaddingInside"
@@ -44,7 +59,6 @@
             android:gravity="center"
             android:paddingHorizontal="20dp"
             android:text="@string/_01_00"
-            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,13 +69,11 @@
             android:id="@+id/imgCatchFondo"
             android:layout_width="1235dp"
             android:layout_height="602dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/catchTxtTimer"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/fondo_catchii" />
 
         <ImageView
@@ -74,10 +86,11 @@
 
         <ImageView
             android:id="@+id/imgCatchManzana"
+            android:visibility="invisible"
             android:layout_width="97dp"
             android:layout_height="99dp"
-            app:layout_constraintTop_toTopOf="@+id/imgCatchFondo"
             app:layout_constraintStart_toStartOf="@+id/imgCatchFondo"
+            app:layout_constraintTop_toTopOf="@+id/imgCatchFondo"
             app:srcCompat="@drawable/manzana_catch" />
 
 
