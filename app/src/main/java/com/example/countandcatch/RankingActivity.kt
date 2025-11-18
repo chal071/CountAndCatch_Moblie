@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -24,7 +25,7 @@ class RankingActivity : AppCompatActivity() {
     private lateinit var star3: ImageView
     private lateinit var rvRanking: RecyclerView
 
-    private lateinit var btnHome: Button
+    private lateinit var btnHome: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
