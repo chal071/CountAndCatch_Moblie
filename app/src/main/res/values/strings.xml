@@ -10,4 +10,6 @@
     <string name="_01_00">01:00</string>
     <string name="cuenta_atras_de_cuanto_tiempo_de_partida_queda">cuenta atras de cuanto tiempo de partida queda</string>
     <string name="fondo_de_juego_catch">fondo de juego catch</string>
+    <string name="_5">5</string>
+    <string name="countdown_antes_de_que_empiece_el_juego">countdown antes de que empiece el juego</string>
 </resources>
