@@ -1,5 +1,6 @@
 package com.example.countandcatch
 
+import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,17 +14,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.postDelayed
 import kotlin.random.Random
 
 class JuegoCatchActivity : AppCompatActivity() {
 
     // private lateinit var countdownTimer: TextView
-    private var timer: CountDownTimer? = null
 
+    private var timer: CountDownTimer? = null
+    private var isGameRunning: Boolean = true;
+    private var isAppleFalling: Boolean = true;
+
+    private var score: Int = 0;
+    private var negativeSocre: Int = 0;
     private var dX =
         0f //hacer que cuando se toque la pantalla, la cesta no salte a donde se ha puesto el dedo
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,34 +42,36 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
 
         val countdownTimer = findViewById<TextView>(R.id.catchTxtTimer)
-        startCountdown(countdownTimer)
-
         val background = findViewById<ImageView>(R.id.imgCatchFondo)
         val basketSlide = findViewById<ImageView>(R.id.imgCatchCesta)
         val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
 
+        startCountdown(countdownTimer)
+
+        val minX = background.x
+        val maxX = background.x + background.width - basketSlide.width
+
+        //TODO
+        @SuppressLint("ClickableViewAccessibility")
         basketSlide.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     dX = view.x - event.rawX
+                    true
                 }
-
                 MotionEvent.ACTION_MOVE -> {
-                    // Update only the X position (horizontal movement)
-                    val newX = event.rawX + dX
-                    val minX = background.x
-                    val maxX = background.x + background.width - view.width
-                    view.x = newX.coerceIn(minX, maxX)
+                    view.x = (event.rawX + dX).coerceIn(minX, maxX)
+                    true
                 }
+                else -> false
             }
-            true
         }
 
         dropItem(background, basketSlide, appleFall)
     }
 
     private fun startCountdown(countdownTimer: TextView) {
-        timer?.cancel() // Cancel any existing timer
+        timer?.cancel()
 
         timer = object : CountDownTimer(60000, 1000) {
             override fun onTick(millisLeft: Long) {
@@ -76,35 +84,42 @@ class JuegoCatchActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 countdownTimer.text = "0:00"
+                isGameRunning = false;
             }
         }.start()
     }
 
     private fun dropItem(background: ImageView, basket: ImageView, item: ImageView) {
-        val randomX = background.x + Random.nextFloat() * (background.width - item.width)
-        item.x = randomX
-        item.y = background.y
+        if (isGameRunning || !isAppleFalling) {
 
-        val animator = ObjectAnimator.ofFloat(item, "y", background.y, background.y + background.height)
-        animator.duration = 3000
-        animator.interpolator = LinearInterpolator()
-        animator.start()
+            isAppleFalling = true
+            item.visibility = android.view.View.VISIBLE
 
-        item.postDelayed(object : Runnable {
-            override fun run() {
-                if (item.y + item.height >= basket.y &&
-                    item.x + item.width >= basket.x &&
-                    item.x <= basket.x + basket.width) {
-                    // Hit basket
-                    item.visibility = android.view.View.GONE
-                } else if (item.y >= background.y + background.height) {
-                    // Hit bottom
-                    item.visibility = android.view.View.GONE
-                } else {
-                    item.postDelayed(this, 16)
+            val randomX = background.x + Random.nextFloat() * (background.width - item.width)
+            item.x = randomX
+            item.y = background.y
+
+            val animator =
+                ObjectAnimator.ofFloat(item, "y", background.y, background.y + background.height)
+            animator.duration = 3000
+            animator.interpolator = LinearInterpolator()
+
+            animator.addListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+                override fun onAnimationCancel(animation: Animator) {}
+                override fun onAnimationRepeat(animation: Animator) {}
+                override fun onAnimationEnd(animation: Animator) {
+                    isAppleFalling = false
+                    if (isGameRunning){
+                        item.postDelayed({
+                            dropItem(background, basket, item)
+                        }, 500)
+                    }
                 }
-            }
-        }, 16)
+            })
+
+            animator.start()
+        }
     }
 
     override fun onDestroy() {
