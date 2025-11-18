@@ -47,17 +47,25 @@ class JuegoCatchActivity : AppCompatActivity() {
         val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
         val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
 
+        //TODO quitar cuando funcione
+        val puntos = findViewById<TextView>(R.id.puntosprovisional)
+
         btnStart.setOnClickListener {
             btnStart.visibility = android.view.View.GONE
-            startGame(countdownTimer, background, basketSlide, appleFall)
+            startGame(countdownTimer, background, basketSlide, appleFall, puntos)
         }
     }
 
-    private fun startGame(countdownTimer: TextView, background: ImageView,
-                          basketSlide: ImageView, appleFall: ImageView) {
+    private fun startGame(
+        countdownTimer: TextView,
+        background: ImageView,
+        basketSlide: ImageView,
+        appleFall: ImageView,
+        puntos: TextView
+                         ) {
         manageCountdown(countdownTimer)
         slideBasket(basketSlide, background)
-        dropItem(background, basketSlide, appleFall)
+        dropItem(background, basketSlide, appleFall, puntos)
     }
 
     private fun manageCountdown(countdownTimer: TextView) {
@@ -100,7 +108,7 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
-    private fun dropItem(background: ImageView, basket: ImageView, item: ImageView) {
+    private fun dropItem(background: ImageView, basket: ImageView, item: ImageView, puntos: TextView) {
         if (isGameRunning || !isAppleFalling) {
 
             isAppleFalling = true
@@ -123,14 +131,37 @@ class JuegoCatchActivity : AppCompatActivity() {
                     isAppleFalling = false
                     if (isGameRunning) {
                         item.postDelayed({
-                                             dropItem(background, basket, item)
-                                         }, 500)
+                                             dropItem(background, basket, item, puntos)
+                                         }, 300)
                     }
                 }
             })
 
             animator.start()
+            checkCollision(item, basket, background, animator, puntos)
         }
+
+    }
+
+    private fun checkCollision(
+        item: ImageView, basket: ImageView, background: ImageView, animator: ObjectAnimator, puntos: TextView
+                              ) {
+
+
+        if (item.y + item.height >= basket.y && item.x + item.width >= basket.x && item.x <= basket.x + basket.width && item.y <= basket.y + basket.height) {
+            score++
+            puntos.text = "1"
+            animator.cancel()
+            item.visibility = android.view.View.GONE
+
+        } else if (item.y >= background.y + background.height) {
+            score--
+            puntos.text = "-1"
+            item.visibility = android.view.View.GONE
+
+        }
+
+
     }
 
     override fun onDestroy() {
