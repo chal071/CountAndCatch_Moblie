@@ -30,6 +30,7 @@ class JuegoCatchActivity : AppCompatActivity() {
     private var dX =
         0f //hacer que cuando se toque la pantalla, la cesta no salte a donde se ha puesto el dedo
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -136,13 +137,55 @@ class JuegoCatchActivity : AppCompatActivity() {
                     }
                 }
             })
-
             animator.start()
             checkCollision(item, basket, background, animator, puntos)
         }
 
     }
 
+
+    private fun checkCollision(item: ImageView, basket: ImageView, background: ImageView, animator: ObjectAnimator, puntos: TextView) {
+        item.postDelayed(object : Runnable {
+            override fun run() {
+                if (!isGameRunning || !isAppleFalling) {
+                    return
+                }
+
+                // Verificar si la manzana toca la cesta
+                if (item.y + item.height >= basket.y &&
+                    item.x + item.width >= basket.x &&
+                    item.x <= basket.x + basket.width &&
+                    item.y <= basket.y + basket.height) {
+
+                    // ¡Atrapada!
+                    puntos.text = "1"
+                    score++
+                    animator.cancel()
+                    item.visibility = android.view.View.GONE
+                    isAppleFalling = false
+
+                    // Lanzar la siguiente manzana inmediatamente
+                    if (isGameRunning) {
+                        item.postDelayed({
+                                             dropItem(background, basket, item, puntos)
+                                         }, 500)
+                    }
+
+                } else if (item.y >= background.y + background.height) {
+                    // Llegó al fondo sin atraparla
+                    item.visibility = android.view.View.GONE
+                    puntos.text = "-1"
+                    isAppleFalling = false
+
+                } else {
+                    // Seguir verificando
+                    item.postDelayed(this, 16)
+                }
+            }
+        }, 16)
+    }
+
+    /*
     private fun checkCollision(item: ImageView, basket: ImageView, background: ImageView,
                                animator: ObjectAnimator, puntos: TextView) {
 
@@ -158,7 +201,7 @@ class JuegoCatchActivity : AppCompatActivity() {
             item.visibility = android.view.View.GONE
 
         }
-    }
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()
