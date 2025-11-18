@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,12 @@ class ElegirJuegosActivity : AppCompatActivity() {
             insets
         }
 
+        val btnHome = findViewById<ImageButton>(R.id.btnHomeEJ)
+
+        btnHome.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+        
         frameJuegoCatch = findViewById(R.id.frameJuegoCatchEJ)
         frameJuegoCount = findViewById(R.id.frameJuegoCountEJ)
         btnEmpezar = findViewById(R.id.btnEmpezarEJ)
