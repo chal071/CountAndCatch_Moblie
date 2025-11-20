@@ -7,4 +7,6 @@
     <string name="nombre_nino">nombre niño</string>
     <string name="resultado_errores">10</string>
     <string name="resultado_puntos">10</string>
+    <string name="cuenta_atras_de_la_partida">cuenta atras de la partida</string>
+    <string name="_1_00">1:00</string>
 </resources>
