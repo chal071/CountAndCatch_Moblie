@@ -51,9 +51,7 @@ class JuegoCatchActivity : AppCompatActivity() {
         val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
         val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
 
-        //TODO quitar cuando funcione
-        val puntosPos = findViewById<TextView>(R.id.puntosprovisionalpositivo)
-        val puntosNeg = findViewById<TextView>(R.id.puntosprovisionalnegativo)
+
 
         btnHome.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
@@ -65,23 +63,17 @@ class JuegoCatchActivity : AppCompatActivity() {
 
             //espera a inciar el juego a cuando todos los elementos estén listos
             background.post {
-                startGame(countdownTimer, background, basketSlide, appleFall, puntosPos, puntosNeg)
+                startGame(countdownTimer, background, basketSlide, appleFall)
             }
         }
     }
 
-    private fun startGame(
-        countdownTimer: TextView,
-        background: ImageView,
-        basketSlide: ImageView,
-        appleFall: ImageView,
-        puntosPos: TextView,
-        puntosNeg: TextView
-                         ) {
+    private fun startGame(countdownTimer: TextView, background: ImageView,
+        basketSlide: ImageView, appleFall: ImageView) {
 
         manageCountdown(countdownTimer)
         slideBasket(basketSlide, background)
-        dropItem(background, basketSlide, appleFall, puntosPos, puntosNeg)
+        dropItem(background, basketSlide, appleFall)
     }
 
     private fun manageCountdown(countdownTimer: TextView) {
@@ -123,13 +115,7 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
-    private fun dropItem(
-        background: ImageView,
-        basket: ImageView,
-        item: ImageView,
-        puntosPos: TextView,
-        puntosNeg: TextView
-                        ) {
+    private fun dropItem(background: ImageView, basket: ImageView, item: ImageView) {
         if (isGameRunning && !isAppleFalling) {
 
             isAppleFalling = true
@@ -155,7 +141,6 @@ class JuegoCatchActivity : AppCompatActivity() {
                         item.y <= basket.y + basket.height) {
 
                         hasScored = true
-                        puntosPos.text = (puntosPos.text.toString().toInt() + 1).toString()
                         positivePoints++
                         animator.cancel()
                         item.visibility = android.view.View.GONE
@@ -163,7 +148,6 @@ class JuegoCatchActivity : AppCompatActivity() {
 
                     } else if (item.y + item.height >= background.y + background.height) {
                         hasScored = true
-                        puntosNeg.text = (puntosNeg.text.toString().toInt() + 1).toString()
                         negativePoints++
                         animator.cancel()
                         item.visibility = android.view.View.GONE
@@ -180,12 +164,11 @@ class JuegoCatchActivity : AppCompatActivity() {
                     isAppleFalling = false
                     if (isGameRunning) {
                         item.postDelayed({
-                                             dropItem(background, basket, item, puntosPos, puntosNeg)
+                            dropItem(background, basket, item)
                                          }, 300)
                     }
                 }
             })
-
             animator.start()
         }
     }
