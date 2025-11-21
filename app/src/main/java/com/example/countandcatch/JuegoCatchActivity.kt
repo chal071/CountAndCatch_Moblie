@@ -25,8 +25,8 @@ class JuegoCatchActivity : AppCompatActivity() {
     private var timer: CountDownTimer? = null
     private var isGameRunning: Boolean = true;
     private var isAppleFalling: Boolean = false;
-    private var score: Int = 0;
-    private var negativeSocre: Int = 0;
+    private var positivePoints: Int = 0;
+    private var negativePoints: Int = 0;
     private var dX =
         0f //hacer que cuando se toque la pantalla, la cesta no salte a donde se ha puesto el dedo
 
@@ -49,14 +49,16 @@ class JuegoCatchActivity : AppCompatActivity() {
         val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
 
         //TODO quitar cuando funcione
-        val puntos = findViewById<TextView>(R.id.puntosprovisional)
+        val puntosPos = findViewById<TextView>(R.id.puntosprovisionalpositivo)
+        val puntosNeg = findViewById<TextView>(R.id.puntosprovisionalnegativo)
+
 
         btnStart.setOnClickListener {
             btnStart.visibility = android.view.View.GONE
 
             //espera a inciar el juego a cuando todos los elementos estén listos
             background.post {
-                startGame(countdownTimer, background, basketSlide, appleFall, puntos)
+                startGame(countdownTimer, background, basketSlide, appleFall, puntosPos, puntosNeg)
             }
         }
     }
@@ -66,12 +68,13 @@ class JuegoCatchActivity : AppCompatActivity() {
         background: ImageView,
         basketSlide: ImageView,
         appleFall: ImageView,
-        puntos: TextView
+        puntosPos: TextView,
+        puntosNeg: TextView
                          ) {
 
         manageCountdown(countdownTimer)
         slideBasket(basketSlide, background)
-        dropItem(background, basketSlide, appleFall, puntos)
+        dropItem(background, basketSlide, appleFall, puntosPos, puntosNeg)
     }
 
     private fun manageCountdown(countdownTimer: TextView) {
@@ -88,6 +91,7 @@ class JuegoCatchActivity : AppCompatActivity() {
             override fun onFinish() {
                 countdownTimer.text = "0:00"
                 isGameRunning = false;
+                onDestroy()
             }
         }.start()
     }
@@ -104,8 +108,6 @@ class JuegoCatchActivity : AppCompatActivity() {
 
                 MotionEvent.ACTION_MOVE -> {
                     val newX = event.rawX + dX
-                    val minX = background.x
-                    val maxX = background.x + background.width - view.width
                     view.x = newX.coerceIn(minX, maxX)
                 }
             }
@@ -114,9 +116,12 @@ class JuegoCatchActivity : AppCompatActivity() {
     }
 
     private fun dropItem(
-        background: ImageView, basket: ImageView, item: ImageView, puntos: TextView
+        background: ImageView,
+        basket: ImageView,
+        item: ImageView,
+        puntosPos: TextView,
+        puntosNeg: TextView
                         ) {
-
         if (isGameRunning && !isAppleFalling) {
 
             isAppleFalling = true
@@ -131,11 +136,33 @@ class JuegoCatchActivity : AppCompatActivity() {
             animator.duration = 3000
             animator.interpolator = LinearInterpolator()
 
+            var hasScored = false
 
+            animator.addUpdateListener {
+                if (!hasScored) {
 
+                    if (item.y + item.height >= basket.y &&
+                        item.x + item.width >= basket.x &&
+                        item.x <= basket.x + basket.width &&
+                        item.y <= basket.y + basket.height) {
 
+                        hasScored = true
+                        puntosPos.text = (puntosPos.text.toString().toInt() + 1).toString()
+                        positivePoints++
+                        animator.cancel()
+                        item.visibility = android.view.View.GONE
+                        isAppleFalling = false
 
-
+                    } else if (item.y + item.height >= background.y + background.height) {
+                        hasScored = true
+                        puntosNeg.text = (puntosNeg.text.toString().toInt() + 1).toString()
+                        negativePoints++
+                        animator.cancel()
+                        item.visibility = android.view.View.GONE
+                        isAppleFalling = false
+                    }
+                }
+            }
 
             animator.addListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {}
@@ -145,81 +172,16 @@ class JuegoCatchActivity : AppCompatActivity() {
                     isAppleFalling = false
                     if (isGameRunning) {
                         item.postDelayed({
-                                             dropItem(background, basket, item, puntos)
+                                             dropItem(background, basket, item, puntosPos, puntosNeg)
                                          }, 300)
                     }
                 }
             })
+
             animator.start()
-            checkCollision(item, basket, background, animator, puntos)
         }
     }
 
-
-    private fun checkCollision(
-        item: ImageView,
-        basket: ImageView,
-        background: ImageView,
-        animator: ObjectAnimator,
-        puntos: TextView
-                              ) {
-
-        if (isGameRunning && isAppleFalling) {
-
-            animator.addUpdateListener {
-
-
-                if (item.y + item.height >= basket.y && item.x + item.width >= basket.x && item.x <= basket.x + basket.width && item.y <= basket.y + basket.height) {
-
-
-                    puntos.text = "1"
-                    score++
-                    animator.cancel()
-                    item.visibility = android.view.View.GONE
-                    isAppleFalling = false
-
-                    if (isGameRunning) {
-                        item.postDelayed({
-                                             dropItem(background, basket, item, puntos)
-                                         }, 0)
-                    }
-
-                } else if (item.y >= background.y + background.height) {
-                    negativeSocre++
-                    puntos.text = "-1"
-                    animator.cancel()
-                    item.visibility = android.view.View.GONE
-                    isAppleFalling = false
-
-                    if (isGameRunning) {
-                        item.postDelayed({
-                                             dropItem(background, basket, item, puntos)
-                                         }, 0)
-                    }
-                }
-            }
-        }
-    }
-
-
-    /*
-        private fun checkCollision(item: ImageView, basket: ImageView, background: ImageView,
-                                   animator: ObjectAnimator, puntos: TextView) {
-
-            if (item.y + item.height >= basket.y && item.x + item.width >= basket.x && item.x <= basket.x + basket.width && item.y <= basket.y + basket.height) {
-                score++
-                puntos.text = "1"
-                animator.cancel()
-                item.visibility = android.view.View.GONE
-
-            } else if (item.y >= background.y + background.height) {
-                score--
-                puntos.text = "-1"
-                item.visibility = android.view.View.GONE
-
-            }
-        }
-    */
     override fun onDestroy() {
         super.onDestroy()
         timer?.cancel()
