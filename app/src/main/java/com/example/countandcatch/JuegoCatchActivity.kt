@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.postDelayed
+import com.example.countandcatch.data.Partida
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
@@ -27,8 +28,15 @@ class JuegoCatchActivity : AppCompatActivity() {
     private var timer: CountDownTimer? = null
     private var isGameRunning: Boolean = true;
     private var isAppleFalling: Boolean = false;
-    private var positivePoints: Int = 0;
-    private var negativePoints: Int = 0;
+    private var positivePoints: Int = 0
+    private var negativePoints: Int = 0
+    private val handler = android.os.Handler(android.os.Looper.getMainLooper())
+    private var elapsedSeconds = 0
+    private var timerView: TextView? = null
+    private var partida: Partida? = null
+    private var maxErrors: Int = 0
+    private var startTime = 0L
+
     private var dX =
         0f //hacer que cuando se toque la pantalla, la cesta no salte a donde se ha puesto el dedo
 
@@ -45,13 +53,20 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
 
         val btnHome = findViewById<ImageButton>(R.id.catchBtnHome)
-        val countdownTimer = findViewById<TextView>(R.id.catchTxtTimer)
+        val timer = findViewById<TextView>(R.id.catchTxtTimer)
         val background = findViewById<ImageView>(R.id.imgCatchFondo)
         val basketSlide = findViewById<ImageView>(R.id.imgCatchCesta)
         val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
         val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
 
+        partida = intent.getSerializableExtra("partida") as? Partida
 
+        maxErrors = when (partida?.dificultad){
+            1 -> 3
+            2 -> 2
+            3 -> 1
+            else -> 3
+        }
 
         btnHome.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
@@ -61,22 +76,37 @@ class JuegoCatchActivity : AppCompatActivity() {
         btnStart.setOnClickListener {
             btnStart.visibility = android.view.View.GONE
 
-            //espera a inciar el juego a cuando todos los elementos estén listos
             background.post {
-                startGame(countdownTimer, background, basketSlide, appleFall)
+                startGame(background, basketSlide, appleFall, timer)
             }
         }
     }
 
-    private fun startGame(countdownTimer: TextView, background: ImageView,
-        basketSlide: ImageView, appleFall: ImageView) {
+    private fun startGame(background: ImageView, basketSlide: ImageView,
+                          appleFall: ImageView, timer: TextView) {
 
-        manageCountdown(countdownTimer)
+        startTimer(timer)
         slideBasket(basketSlide, background)
         dropItem(background, basketSlide, appleFall)
     }
 
-    private fun manageCountdown(countdownTimer: TextView) {
+    private val timeRunnable = object : Runnable {
+        override fun run() {
+            elapsedSeconds++
+            timerView?.text = "${elapsedSeconds}s"
+            handler.postDelayed(this, 1000)
+        }
+    }
+
+    private fun startTimer(timer: TextView) {
+        timerView = timer
+        elapsedSeconds = 0
+        timerView?.text = "0s"
+        handler.postDelayed(timeRunnable, 1000)
+    }
+
+
+/*    private fun manageCountdown(countdownTimer: TextView) {
         timer?.cancel()
 
         timer = object : CountDownTimer(60000, 1000) {
@@ -95,6 +125,8 @@ class JuegoCatchActivity : AppCompatActivity() {
             }
         }.start()
     }
+    */
+
 
     private fun slideBasket(basketSlide: ImageView, background: ImageView) {
         val minX = background.x
@@ -152,6 +184,10 @@ class JuegoCatchActivity : AppCompatActivity() {
                         animator.cancel()
                         item.visibility = android.view.View.GONE
                         isAppleFalling = false
+
+                        if (negativePoints >= maxErrors){
+                            endGame()
+                        }
                     }
                 }
             }
@@ -163,9 +199,16 @@ class JuegoCatchActivity : AppCompatActivity() {
                 override fun onAnimationEnd(animation: Animator) {
                     isAppleFalling = false
                     if (isGameRunning) {
-                        item.postDelayed({
-                            dropItem(background, basket, item)
-                                         }, 300)
+
+                        if (partida?.dificultad == 3) {
+                            item.postDelayed({
+                                                 dropItem(background, basket, item)
+                                             }, 200)
+                        } else {
+                            item.postDelayed({
+                                                 dropItem(background, basket, item)
+                                             }, 300)
+                        }
                     }
                 }
             })
@@ -173,8 +216,18 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
+    private fun endGame(){
+        handler.removeCallbacks(timeRunnable)
+        isGameRunning = false
+
+        val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
+        intent.putExtra("positivePoints", positivePoints)
+        intent.putExtra("elapsedSeconds", elapsedSeconds)
+        startActivity(intent)
+        finish()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        timer?.cancel()
     }
 }

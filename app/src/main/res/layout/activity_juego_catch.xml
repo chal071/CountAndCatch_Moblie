@@ -58,7 +58,7 @@
         android:fontFamily="@font/poppins_black"
         android:gravity="center"
         android:paddingHorizontal="20dp"
-        android:text="@string/_1_00"
+        android:text="@string/_0"
         android:textColor="@color/white"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
