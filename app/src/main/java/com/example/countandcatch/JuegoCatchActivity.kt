@@ -3,12 +3,14 @@ package com.example.countandcatch
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -42,6 +44,7 @@ class JuegoCatchActivity : AppCompatActivity() {
             insets
         }
 
+        val btnHome = findViewById<ImageButton>(R.id.catchBtnHome)
         val countdownTimer = findViewById<TextView>(R.id.catchTxtTimer)
         val background = findViewById<ImageView>(R.id.imgCatchFondo)
         val basketSlide = findViewById<ImageView>(R.id.imgCatchCesta)
@@ -52,6 +55,10 @@ class JuegoCatchActivity : AppCompatActivity() {
         val puntosPos = findViewById<TextView>(R.id.puntosprovisionalpositivo)
         val puntosNeg = findViewById<TextView>(R.id.puntosprovisionalnegativo)
 
+        btnHome.setOnClickListener {
+            val intent = Intent(this, HomePageActivity::class.java)
+            startActivity(intent)
+        }
 
         btnStart.setOnClickListener {
             btnStart.visibility = android.view.View.GONE
@@ -89,9 +96,10 @@ class JuegoCatchActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                countdownTimer.text = "0:00"
                 isGameRunning = false;
-                onDestroy()
+                val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }.start()
     }
