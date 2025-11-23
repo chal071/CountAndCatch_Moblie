@@ -38,26 +38,29 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:src="@drawable/count"
             android:clickable="false"
-
             android:scaleType="centerCrop"
+
             />
+
     </FrameLayout>
 
     <FrameLayout
             android:id="@+id/frameJuegoCountEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
-
+            android:src="@drawable/catch"
+            android:clickable="false"
+            android:scaleType="centerCrop"
         >
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/count"
             android:clickable="false"
-            android:scaleType="centerCrop"
 
+            android:scaleType="centerCrop"
             />
 
     </FrameLayout>
