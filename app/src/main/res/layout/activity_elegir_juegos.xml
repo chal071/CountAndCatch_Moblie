@@ -50,7 +50,7 @@
             android:id="@+id/frameJuegoCountEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
-            android:src="@drawable/catch"
+            android:src="@drawable/catch_logo"
             android:clickable="false"
             android:scaleType="centerCrop"
         >
