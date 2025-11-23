@@ -48,7 +48,7 @@ class InicioSesionActivity : AppCompatActivity() {
         val partida = Partida(
             nombre = nombre,
             tiempo_partida = 0,
-            errores = 0,
+            puntos_o_errores = 0,
             fecha = "",
             juego = 0,
             dificultad = 0

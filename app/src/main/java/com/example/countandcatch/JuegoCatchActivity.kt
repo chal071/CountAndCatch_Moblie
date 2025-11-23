@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.MotionEvent
@@ -17,10 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.postDelayed
 import com.example.countandcatch.data.Partida
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class JuegoCatchActivity : AppCompatActivity() {
@@ -131,6 +127,11 @@ class JuegoCatchActivity : AppCompatActivity() {
         handler.postDelayed(timeRunnable, 1000)
     }
 
+    private fun getDate(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+        return sdf.format(java.util.Date())
+    }
+
     private fun slideBasket(basketSlide: ImageView, background: ImageView) {
         val minX = background.x
         val maxX = background.x + background.width - basketSlide.width
@@ -192,7 +193,7 @@ class JuegoCatchActivity : AppCompatActivity() {
                         updateLives(negativePoints, vida1, vida2, vida3)
 
                         if (negativePoints >= maxErrors){
-                            endGame()
+                            endGame(positivePoints)
                         }
                     }
                 }
@@ -234,18 +235,25 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
-    private fun endGame(){
+    private fun endGame(positivePoints: Int){
         handler.removeCallbacks(timeRunnable)
         isGameRunning = false
 
-        val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
-        intent.putExtra("positivePoints", positivePoints)
-        intent.putExtra("elapsedSeconds", elapsedSeconds)
-        startActivity(intent)
-        finish()
+        val base = partida
+        if (base != null) {
+            val updated = base.copy(
+                tiempo_partida = elapsedSeconds,
+                fecha = getDate(),
+                puntos_o_errores = positivePoints
+            )
+            val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
+            intent.putExtra("partida", updated)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        finish()
     }
 }

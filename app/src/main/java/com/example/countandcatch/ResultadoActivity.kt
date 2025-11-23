@@ -3,6 +3,7 @@ package com.example.countandcatch
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,26 +24,36 @@ class ResultadoActivity : AppCompatActivity() {
         }
 
         val txtResultadoNombreNino = findViewById<TextView>(R.id.txtResultadoNombreNino)
+        val imgResultadoCruz = findViewById<ImageView>(R.id.imgResultadoCruz)
         val txtResultadoErrores = findViewById<TextView>(R.id.txtResultadoErrores)
+        val imgResultadoCheck = findViewById<ImageView>(R.id.imgResultadoCheck)
+        val txtResultadoPuntos = findViewById<TextView>(R.id.txtResultadoPuntos)
+
 
         val partida = intent.getSerializableExtra("partida") as? Partida
 
         if (partida == null) {
-            txtResultadoNombreNino.text = "Error al cargar la partida"
+            txtResultadoNombreNino.text = "Error al cargar nombre"
             txtResultadoErrores.text = ""
             return
         }
-        if (partida.errores == 0){
-            txtResultadoErrores.text = "0"
-        } else {
-            txtResultadoErrores.text = "${partida.errores}"
+        if (partida.juego == 1) {
+            imgResultadoCheck.visibility = android.view.View.GONE
+            txtResultadoPuntos.visibility = android.view.View.GONE
+
+            txtResultadoErrores.text = "${partida.puntos_o_errores}"
+        } else if (partida.juego == 2){
+            imgResultadoCruz.visibility = android.view.View.GONE
+            txtResultadoErrores.visibility = android.view.View.GONE
+
+            txtResultadoPuntos.text = "${partida.puntos_o_errores}"
         }
 
         txtResultadoNombreNino.text = "${partida.nombre}"
 
         guardarPartida(partida)
 
-        val btnAceptar = findViewById<Button>(R.id.btnAceptar)
+        val btnAceptar = findViewById<Button>(R.id.resultadobtnAceptar)
 
         btnAceptar.setOnClickListener {
             val intent = Intent(this, RankingActivity::class.java)
