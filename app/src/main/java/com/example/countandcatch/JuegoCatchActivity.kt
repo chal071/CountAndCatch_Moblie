@@ -244,7 +244,7 @@ class JuegoCatchActivity : AppCompatActivity() {
             val updated = base.copy(
                 tiempo_partida = elapsedSeconds,
                 fecha = getDate(),
-                puntos_o_errores = positivePoints
+                puntos = positivePoints
             )
             val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
             intent.putExtra("partida", updated)

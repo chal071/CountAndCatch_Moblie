@@ -135,7 +135,7 @@ class JuegoCountActivity : AppCompatActivity() {
         adapterImg.submit(imgList)
         adapterNumber.submit(numList)
 
-        val size = widthPx / pairCount - 4
+        val size = widthPx / pairCount - 10
         adapterImg.setItemSize(size)
         adapterNumber.setItemSize(size)
 
@@ -179,7 +179,7 @@ class JuegoCountActivity : AppCompatActivity() {
                         val updated = base.copy(
                             tiempo_partida = elapsedSeconds,
                             fecha = obtenerFechaHoy(),
-                            puntos_o_errores = errores
+                            errores = errores
                         )
                         val intent = Intent(this, ResultadoActivity::class.java)
                         intent.putExtra("partida", updated)
