@@ -37,25 +37,33 @@ class ElegirNivelJuego : AppCompatActivity() {
 
         btnContinuar.setOnClickListener {
 
-            if (nivelSeleccionado == null) {
-                Toast.makeText(this, "Selecciona un nivel antes de continuar", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
             val base = partida
 
-            if (base == null) {
+            if (nivelSeleccionado == null) {
+                Toast.makeText(this, "Selecciona un nivel antes de continuar", Toast.LENGTH_SHORT).show()
+            } else if (base == null) {
                 Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            } else {
+                val updated = base.copy(
+                    dificultad = nivelSeleccionado!!
+                )
+
+                when (partida?.juego) {
+                    1 -> {
+                        val intent = Intent(this, JuegoCountActivity::class.java)
+                        intent.putExtra("partida", updated)
+                        startActivity(intent)
+                    }
+                    2 -> {
+                        val intent = Intent(this, JuegoCatchActivity::class.java)
+                        intent.putExtra("partida", updated)
+                        startActivity(intent)
+                    }
+                    else -> {
+                        Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
-
-            val updated = base.copy(
-                dificultad = nivelSeleccionado!!
-            )
-
-            val intent = Intent(this, JuegoCountActivity::class.java)
-            intent.putExtra("partida", updated)
-            startActivity(intent)
         }
     }
 }

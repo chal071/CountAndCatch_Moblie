@@ -3,7 +3,6 @@ package com.example.countandcatch
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,7 +23,6 @@ class RankingActivity : AppCompatActivity() {
     private lateinit var star2: ImageView
     private lateinit var star3: ImageView
     private lateinit var rvRanking: RecyclerView
-
     private lateinit var btnHome: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +34,8 @@ class RankingActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val partida = intent.getSerializableExtra("partida") as? Partida
 
         tvJuego = findViewById(R.id.tvJuego)
         star1 = findViewById(R.id.star1)
@@ -65,21 +65,22 @@ class RankingActivity : AppCompatActivity() {
 
         val rankingOrdenado = when (juegoId) {
             1 -> partidasFiltradas.sortedWith(
-                compareBy<Partida> { it.errores }
+                compareBy<Partida> { it.puntos_o_errores }
                     .thenBy { it.tiempo_partida }
-            ) //juego count
-            2 -> partidasFiltradas.sortedBy { it.tiempo_partida }
-            else -> partidasFiltradas //juego catch
+            )
+            2 -> partidasFiltradas.sortedBy { it.puntos_o_errores }
+            else -> partidasFiltradas
         }
 
+        val juego = partida?.juego
+
         rvRanking.layoutManager = LinearLayoutManager(this)
-        rvRanking.adapter = RankingAdapter(rankingOrdenado)
+        rvRanking.adapter = RankingAdapter(rankingOrdenado, juego)
 
         btnHome.setOnClickListener{
             val intent = Intent(this, HomePageActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun setStars(level: Int) {

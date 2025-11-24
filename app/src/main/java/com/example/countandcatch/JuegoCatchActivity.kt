@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.MotionEvent
@@ -17,10 +16,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.postDelayed
 import com.example.countandcatch.data.Partida
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class JuegoCatchActivity : AppCompatActivity() {
@@ -58,6 +54,10 @@ class JuegoCatchActivity : AppCompatActivity() {
         val basketSlide = findViewById<ImageView>(R.id.imgCatchCesta)
         val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
         val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
+        val vida1 = findViewById<ImageView>(R.id.imgCatchManzanaVida1)
+        val vida2 = findViewById<ImageView>(R.id.imgCatchManzanaVida2)
+        val vida3 = findViewById<ImageView>(R.id.imgCatchManzanaVida3)
+
 
         partida = intent.getSerializableExtra("partida") as? Partida
 
@@ -68,6 +68,8 @@ class JuegoCatchActivity : AppCompatActivity() {
             else -> 3
         }
 
+        initializeLives(vida1, vida2, vida3)
+
         btnHome.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
             startActivity(intent)
@@ -77,17 +79,37 @@ class JuegoCatchActivity : AppCompatActivity() {
             btnStart.visibility = android.view.View.GONE
 
             background.post {
-                startGame(background, basketSlide, appleFall, timer)
+                startGame(background, basketSlide, appleFall, timer, vida1, vida2, vida3)
             }
         }
     }
 
+    private fun initializeLives(vida1: ImageView, vida2: ImageView, vida3: ImageView) {
+        when (maxErrors) {
+            1 -> {
+                vida1.visibility = View.VISIBLE
+                vida2.visibility = View.GONE
+                vida3.visibility = View.GONE
+            }
+            2 -> {
+                vida1.visibility = View.VISIBLE
+                vida2.visibility = View.VISIBLE
+                vida3.visibility = View.GONE
+            }
+            3 -> {
+                vida1.visibility = View.VISIBLE
+                vida2.visibility = View.VISIBLE
+                vida3.visibility = View.VISIBLE
+            }
+        }
+    }
     private fun startGame(background: ImageView, basketSlide: ImageView,
-                          appleFall: ImageView, timer: TextView) {
+                          appleFall: ImageView, timer: TextView,
+                          vida1: ImageView, vida2: ImageView, vida3: ImageView) {
 
         startTimer(timer)
         slideBasket(basketSlide, background)
-        dropItem(background, basketSlide, appleFall)
+        dropItem(background, basketSlide, appleFall, vida1, vida2, vida3)
     }
 
     private val timeRunnable = object : Runnable {
@@ -105,28 +127,10 @@ class JuegoCatchActivity : AppCompatActivity() {
         handler.postDelayed(timeRunnable, 1000)
     }
 
-
-/*    private fun manageCountdown(countdownTimer: TextView) {
-        timer?.cancel()
-
-        timer = object : CountDownTimer(60000, 1000) {
-            override fun onTick(millisLeft: Long) {
-                val seconds = (millisLeft / 1000).toInt()
-                val minutes = seconds / 60
-                val secs = seconds % 60
-                countdownTimer.text = String.format("%d:%02d", minutes, secs)
-            }
-
-            override fun onFinish() {
-                isGameRunning = false;
-                val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }.start()
+    private fun getDate(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+        return sdf.format(java.util.Date())
     }
-    */
-
 
     private fun slideBasket(basketSlide: ImageView, background: ImageView) {
         val minX = background.x
@@ -147,7 +151,8 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
-    private fun dropItem(background: ImageView, basket: ImageView, item: ImageView) {
+    private fun dropItem(background: ImageView, basket: ImageView, item: ImageView,
+                         vida1: ImageView, vida2: ImageView, vida3: ImageView) {
         if (isGameRunning && !isAppleFalling) {
 
             isAppleFalling = true
@@ -185,8 +190,10 @@ class JuegoCatchActivity : AppCompatActivity() {
                         item.visibility = android.view.View.GONE
                         isAppleFalling = false
 
+                        updateLives(negativePoints, vida1, vida2, vida3)
+
                         if (negativePoints >= maxErrors){
-                            endGame()
+                            endGame(positivePoints)
                         }
                     }
                 }
@@ -202,11 +209,13 @@ class JuegoCatchActivity : AppCompatActivity() {
 
                         if (partida?.dificultad == 3) {
                             item.postDelayed({
-                                                 dropItem(background, basket, item)
+                                                 dropItem(background, basket, item,
+                                                     vida1, vida2, vida3)
                                              }, 200)
                         } else {
                             item.postDelayed({
-                                                 dropItem(background, basket, item)
+                                                 dropItem(background, basket, item,
+                                                     vida1, vida2, vida3)
                                              }, 300)
                         }
                     }
@@ -216,18 +225,35 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
-    private fun endGame(){
+    private fun updateLives(negativePoints: Int, vida1: ImageView, vida2: ImageView, vida3: ImageView) {
+        val livesLeft = maxErrors - negativePoints
+
+        when (livesLeft) {
+            2 -> vida3.visibility = View.GONE
+            1 -> vida2.visibility = View.GONE
+            0 -> vida1.visibility = View.GONE
+        }
+    }
+
+    private fun endGame(positivePoints: Int){
         handler.removeCallbacks(timeRunnable)
         isGameRunning = false
 
-        val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
-        intent.putExtra("positivePoints", positivePoints)
-        intent.putExtra("elapsedSeconds", elapsedSeconds)
-        startActivity(intent)
-        finish()
+        val base = partida
+        if (base != null) {
+            val updated = base.copy(
+                tiempo_partida = elapsedSeconds,
+                fecha = getDate(),
+                puntos_o_errores = positivePoints
+            )
+            val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
+            intent.putExtra("partida", updated)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        finish()
     }
 }
