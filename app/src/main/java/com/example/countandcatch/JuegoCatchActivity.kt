@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.countandcatch.data.Partida
@@ -21,7 +22,6 @@ import kotlin.random.Random
 
 class JuegoCatchActivity : AppCompatActivity() {
 
-    private var timer: CountDownTimer? = null
     private var isGameRunning: Boolean = true;
     private var isAppleFalling: Boolean = false;
     private var positivePoints: Int = 0
@@ -48,6 +48,7 @@ class JuegoCatchActivity : AppCompatActivity() {
             insets
         }
 
+        val layout = findViewById<ConstraintLayout>(R.id.catchLayout)
         val btnHome = findViewById<ImageButton>(R.id.catchBtnHome)
         val timer = findViewById<TextView>(R.id.catchTxtTimer)
         val background = findViewById<ImageView>(R.id.imgCatchFondo)
@@ -57,7 +58,6 @@ class JuegoCatchActivity : AppCompatActivity() {
         val vida1 = findViewById<ImageView>(R.id.imgCatchManzanaVida1)
         val vida2 = findViewById<ImageView>(R.id.imgCatchManzanaVida2)
         val vida3 = findViewById<ImageView>(R.id.imgCatchManzanaVida3)
-
 
         partida = intent.getSerializableExtra("partida") as? Partida
 
@@ -71,15 +71,16 @@ class JuegoCatchActivity : AppCompatActivity() {
         initializeLives(vida1, vida2, vida3)
 
         btnHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, InicioSesionActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         btnStart.setOnClickListener {
             btnStart.visibility = android.view.View.GONE
 
             background.post {
-                startGame(background, basketSlide, appleFall, timer, vida1, vida2, vida3)
+                startGame(layout, basketSlide, appleFall, timer, vida1, vida2, vida3)
             }
         }
     }
@@ -103,13 +104,13 @@ class JuegoCatchActivity : AppCompatActivity() {
             }
         }
     }
-    private fun startGame(background: ImageView, basketSlide: ImageView,
+    private fun startGame(layout: ConstraintLayout, basketSlide: ImageView,
                           appleFall: ImageView, timer: TextView,
                           vida1: ImageView, vida2: ImageView, vida3: ImageView) {
 
         startTimer(timer)
-        slideBasket(basketSlide, background)
-        dropItem(background, basketSlide, appleFall, vida1, vida2, vida3)
+        slideBasket(basketSlide, layout)
+        dropItem(layout, basketSlide, appleFall, vida1, vida2, vida3)
     }
 
     private val timeRunnable = object : Runnable {
@@ -132,9 +133,9 @@ class JuegoCatchActivity : AppCompatActivity() {
         return sdf.format(java.util.Date())
     }
 
-    private fun slideBasket(basketSlide: ImageView, background: ImageView) {
-        val minX = background.x
-        val maxX = background.x + background.width - basketSlide.width
+    private fun slideBasket(basketSlide: ImageView, layout: ConstraintLayout) {
+        val minX = layout.x
+        val maxX = layout.x + layout.width - basketSlide.width
 
         @SuppressLint("ClickableViewAccessibility") basketSlide.setOnTouchListener { view, event ->
             when (event.action) {
@@ -151,19 +152,19 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
-    private fun dropItem(background: ImageView, basket: ImageView, item: ImageView,
+    private fun dropItem(layout: ConstraintLayout, basket: ImageView, item: ImageView,
                          vida1: ImageView, vida2: ImageView, vida3: ImageView) {
         if (isGameRunning && !isAppleFalling) {
 
             isAppleFalling = true
             item.visibility = android.view.View.VISIBLE
 
-            val randomX = background.x + Random.nextFloat() * (background.width - item.width)
+            val randomX = layout.x + Random.nextFloat() * (layout.width - item.width)
             item.x = randomX
-            item.y = background.y
+            item.y = layout.y
 
             val animator =
-                ObjectAnimator.ofFloat(item, "y", background.y, background.y + background.height)
+                ObjectAnimator.ofFloat(item, "y", layout.y, layout.y + layout.height)
             animator.duration = 3000
             animator.interpolator = LinearInterpolator()
 
@@ -183,7 +184,7 @@ class JuegoCatchActivity : AppCompatActivity() {
                         item.visibility = android.view.View.GONE
                         isAppleFalling = false
 
-                    } else if (item.y + item.height >= background.y + background.height) {
+                    } else if (item.y + item.height >= layout.y + layout.height) {
                         hasScored = true
                         negativePoints++
                         animator.cancel()
@@ -209,12 +210,12 @@ class JuegoCatchActivity : AppCompatActivity() {
 
                         if (partida?.dificultad == 3) {
                             item.postDelayed({
-                                                 dropItem(background, basket, item,
+                                                 dropItem(layout, basket, item,
                                                      vida1, vida2, vida3)
                                              }, 200)
                         } else {
                             item.postDelayed({
-                                                 dropItem(background, basket, item,
+                                                 dropItem(layout, basket, item,
                                                      vida1, vida2, vida3)
                                              }, 300)
                         }
@@ -249,6 +250,7 @@ class JuegoCatchActivity : AppCompatActivity() {
             val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
             intent.putExtra("partida", updated)
             startActivity(intent)
+            finish()
         }
     }
 
