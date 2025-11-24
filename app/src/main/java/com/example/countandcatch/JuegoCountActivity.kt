@@ -179,7 +179,7 @@ class JuegoCountActivity : AppCompatActivity() {
                         val updated = base.copy(
                             tiempo_partida = elapsedSeconds,
                             fecha = obtenerFechaHoy(),
-                            puntos_o_errores = errores
+                            errores = errores
                         )
                         val intent = Intent(this, ResultadoActivity::class.java)
                         intent.putExtra("partida", updated)

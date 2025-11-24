@@ -41,12 +41,12 @@ class ResultadoActivity : AppCompatActivity() {
             imgResultadoCheck.visibility = android.view.View.GONE
             txtResultadoPuntos.visibility = android.view.View.GONE
 
-            txtResultadoErrores.text = "${partida.puntos_o_errores}"
+            txtResultadoErrores.text = "${partida.errores}"
         } else if (partida.juego == 2){
             imgResultadoCruz.visibility = android.view.View.GONE
             txtResultadoErrores.visibility = android.view.View.GONE
 
-            txtResultadoPuntos.text = "${partida.puntos_o_errores}"
+            txtResultadoPuntos.text = "${partida.puntos}"
         }
 
         txtResultadoNombreNino.text = "${partida.nombre}"

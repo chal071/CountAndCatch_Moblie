@@ -65,10 +65,10 @@ class RankingActivity : AppCompatActivity() {
 
         val rankingOrdenado = when (juegoId) {
             1 -> partidasFiltradas.sortedWith(
-                compareBy<Partida> { it.puntos_o_errores }
+                compareBy<Partida> { it.errores }
                     .thenBy { it.tiempo_partida }
             )
-            2 -> partidasFiltradas.sortedBy { it.puntos_o_errores }
+            2 -> partidasFiltradas.sortedBy { it.puntos }
             else -> partidasFiltradas
         }
 
