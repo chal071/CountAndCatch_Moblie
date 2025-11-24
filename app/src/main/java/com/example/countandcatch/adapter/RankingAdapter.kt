@@ -31,8 +31,8 @@ class RankingAdapter(
         holder.tvNombre.text = p.nombre
 
         holder.tvInfo.text = when (juego) {
-            1 -> "Tiempo: ${p.tiempo_partida}s  ·  Errores: ${p.puntos_o_errores}"
-            2 -> "Tiempo: ${p.tiempo_partida}s  ·  Puntos: ${p.puntos_o_errores}"
+            1 -> "Tiempo: ${p.tiempo_partida}s  ·  Errores: ${p.errores}"
+            2 -> "Tiempo: ${p.tiempo_partida}s  ·  Puntos: ${p.puntos}"
             else -> "Tiempo: ${p.tiempo_partida}s"
         }
     }
