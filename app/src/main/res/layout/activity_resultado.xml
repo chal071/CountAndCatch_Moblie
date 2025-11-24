@@ -64,7 +64,7 @@
             android:textAllCaps="true"
             android:textColor="@color/green_correct"
             android:textSize="150sp"
-            app:layout_constraintBottom_toTopOf="@+id/txtResultadoAceptar"
+            app:layout_constraintBottom_toTopOf="@+id/resultadobtnAceptar"
             app:layout_constraintStart_toEndOf="@+id/imgResultadoCheck"
             app:layout_constraintTop_toBottomOf="@+id/txtResultadoNombreNino" />
 
@@ -76,7 +76,7 @@
             android:layout_marginTop="175dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="175dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtResultadoAceptar"
+            app:layout_constraintBottom_toTopOf="@+id/resultadobtnAceptar"
             app:layout_constraintEnd_toStartOf="@+id/txtResultadoErrores"
             app:layout_constraintTop_toBottomOf="@+id/txtResultadoNombreNino"
             app:srcCompat="@drawable/cross" />
@@ -101,7 +101,7 @@
 
         <Button
             style="@style/btn_aceptar"
-            android:id="@+id/btnAceptar"
+            android:id="@+id/resultadobtnAceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="470dp"
