@@ -3,7 +3,7 @@
     android:id="@+id/mainElegirJuegos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -30,15 +30,24 @@
             android:layout_width="480dp"
             android:layout_height="500dp"
             android:layout_marginEnd="@dimen/frameMarginRight"
+<<<<<<< HEAD
             >
+=======
+            android:padding="20dp">
+>>>>>>> c7b129f2678a807a4602a70b34e3df09ed21a187
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="false"
                 android:scaleType="centerCrop"
+<<<<<<< HEAD
                 android:src="@drawable/count"
                 />
+=======
+                android:src="@drawable/bgcount"
+                android:clipToOutline="true"
+                android:background="@drawable/rounded_mask"/>
+>>>>>>> c7b129f2678a807a4602a70b34e3df09ed21a187
 
         </FrameLayout>
 
@@ -46,14 +55,16 @@
             android:id="@+id/frameJuegoCatchEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
-            android:padding="30dp">
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/catch_logo" />
+                android:src="@drawable/catch_logo"
+                android:clipToOutline="true"
+                android:background="@drawable/rounded_mask"/>
 
         </FrameLayout>
 
