@@ -7,4 +7,6 @@
     <color name="fondo">#FFFFD0</color>
     <color name="red_errors">#990000</color>
     <color name="green_correct">#3B9900</color>
+    <color name="lila">#8c52ff</color>
+
 </resources>
