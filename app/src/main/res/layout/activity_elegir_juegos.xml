@@ -3,7 +3,7 @@
     android:id="@+id/mainElegirJuegos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -29,16 +29,16 @@
             android:id="@+id/frameJuegoCountEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
-            android:layout_marginEnd="@dimen/frameMarginRight">
+            android:layout_marginEnd="@dimen/frameMarginRight"
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/count"
-
-                />
+                android:src="@drawable/bgcount"
+                android:clipToOutline="true"
+                android:background="@drawable/rounded_mask"/>
 
         </FrameLayout>
 
@@ -46,14 +46,16 @@
             android:id="@+id/frameJuegoCatchEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
-            android:padding="30dp">
+            android:padding="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/catch_logo" />
+                android:src="@drawable/catch_logo"
+                android:clipToOutline="true"
+                android:background="@drawable/rounded_mask"/>
 
         </FrameLayout>
 
