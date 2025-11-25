@@ -29,7 +29,8 @@
             android:id="@+id/frameJuegoCountEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
-            android:layout_marginEnd="@dimen/frameMarginRight">
+            android:layout_marginEnd="@dimen/frameMarginRight"
+            >
 
             <ImageView
                 android:layout_width="match_parent"
@@ -37,7 +38,6 @@
                 android:clickable="false"
                 android:scaleType="centerCrop"
                 android:src="@drawable/count"
-
                 />
 
         </FrameLayout>
