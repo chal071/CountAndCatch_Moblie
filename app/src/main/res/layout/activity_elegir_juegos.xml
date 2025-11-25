@@ -30,24 +30,16 @@
             android:layout_width="480dp"
             android:layout_height="500dp"
             android:layout_marginEnd="@dimen/frameMarginRight"
-<<<<<<< HEAD
-            >
-=======
             android:padding="20dp">
->>>>>>> c7b129f2678a807a4602a70b34e3df09ed21a187
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-<<<<<<< HEAD
-                android:src="@drawable/count"
-                />
-=======
                 android:src="@drawable/bgcount"
                 android:clipToOutline="true"
-                android:background="@drawable/rounded_mask"/>
->>>>>>> c7b129f2678a807a4602a70b34e3df09ed21a187
+                android:background="@drawable/rounded_mask"
+                />
 
         </FrameLayout>
 
