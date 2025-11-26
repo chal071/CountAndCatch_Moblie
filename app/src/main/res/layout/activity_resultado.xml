@@ -64,12 +64,13 @@
                 android:id="@+id/imgResultadoCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="250dp"
-                app:srcCompat="@drawable/catch_manzana" />
+                app:srcCompat="@drawable/catch_manzana"
+                android:layout_marginBottom="80dp"/>
 
             <TextView
                 android:id="@+id/txtResultadoPuntos"
-                android:layout_width="197dp"
-                android:layout_height="222dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="150sp"
                 android:textColor="@color/lila"
                 android:gravity="center_vertical"
