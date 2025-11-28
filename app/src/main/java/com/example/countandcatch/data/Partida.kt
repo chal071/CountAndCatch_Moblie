@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class Partida(
     val nombre: String,
+    val edad: Int,
     val tiempo_partida: Int,
     val errores: Int,
     val puntos: Int,

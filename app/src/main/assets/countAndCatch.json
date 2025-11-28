@@ -1,6 +1,7 @@
 [
   {
     "nombre": "Chenxiao",
+    "edad": 12,
     "tiempo_partida": 45,
     "errores": 1,
     "puntos": 0,
@@ -10,11 +11,153 @@
   },
   {
     "nombre": "Qiaoqiao",
+    "edad": 11,
     "tiempo_partida": 52,
     "errores": 0,
     "puntos": 13,
     "fecha": "2025-10-30",
     "juego": 2,
     "dificultad": 2
+  },
+  {
+    "nombre": "Lucas",
+    "edad": 10,
+    "tiempo_partida": 38,
+    "errores": 2,
+    "puntos": 8,
+    "fecha": "2025-11-01",
+    "juego": 1,
+    "dificultad": 1
+  },
+  {
+    "nombre": "Marta",
+    "edad": 9,
+    "tiempo_partida": 60,
+    "errores": 3,
+    "puntos": 5,
+    "fecha": "2025-11-01",
+    "juego": 2,
+    "dificultad": 3
+  },
+  {
+    "nombre": "Diego",
+    "edad": 11,
+    "tiempo_partida": 41,
+    "errores": 1,
+    "puntos": 15,
+    "fecha": "2025-11-02",
+    "juego": 1,
+    "dificultad": 2
+  },
+  {
+    "nombre": "Lucía",
+    "edad": 10,
+    "tiempo_partida": 55,
+    "errores": 4,
+    "puntos": 6,
+    "fecha": "2025-11-02",
+    "juego": 2,
+    "dificultad": 2
+  },
+  {
+    "nombre": "Hugo",
+    "edad": 9,
+    "tiempo_partida": 30,
+    "errores": 0,
+    "puntos": 18,
+    "fecha": "2025-11-03",
+    "juego": 1,
+    "dificultad": 3
+  },
+  {
+    "nombre": "Sofía",
+    "edad": 12,
+    "tiempo_partida": 48,
+    "errores": 2,
+    "puntos": 12,
+    "fecha": "2025-11-03",
+    "juego": 2,
+    "dificultad": 1
+  },
+  {
+    "nombre": "Pau",
+    "edad": 9,
+    "tiempo_partida": 36,
+    "errores": 1,
+    "puntos": 10,
+    "fecha": "2025-11-04",
+    "juego": 1,
+    "dificultad": 1
+  },
+  {
+    "nombre": "Aina",
+    "edad": 10,
+    "tiempo_partida": 62,
+    "errores": 3,
+    "puntos": 7,
+    "fecha": "2025-11-04",
+    "juego": 2,
+    "dificultad": 2
+  },
+  {
+    "nombre": "Marc",
+    "edad": 11,
+    "tiempo_partida": 44,
+    "errores": 0,
+    "puntos": 19,
+    "fecha": "2025-11-05",
+    "juego": 1,
+    "dificultad": 3
+  },
+  {
+    "nombre": "Clara",
+    "edad": 8,
+    "tiempo_partida": 70,
+    "errores": 5,
+    "puntos": 4,
+    "fecha": "2025-11-05",
+    "juego": 2,
+    "dificultad": 1
+  },
+  {
+    "nombre": "Jordi",
+    "edad": 12,
+    "tiempo_partida": 39,
+    "errores": 2,
+    "puntos": 14,
+    "fecha": "2025-11-06",
+    "juego": 1,
+    "dificultad": 2
+  },
+  {
+    "nombre": "Nuria",
+    "edad": 10,
+    "tiempo_partida": 53,
+    "errores": 1,
+    "puntos": 16,
+    "fecha": "2025-11-06",
+    "juego": 2,
+    "dificultad": 3
+  },
+  {
+    "nombre": "Leo",
+    "edad": 9,
+    "tiempo_partida": 47,
+    "errores": 3,
+    "puntos": 9,
+    "fecha": "2025-11-07",
+    "juego": 1,
+    "dificultad": 2
+  },
+  {
+    "nombre": "Irene",
+    "edad": 11,
+    "tiempo_partida": 40,
+    "errores": 0,
+    "puntos": 20,
+    "fecha": "2025-11-07",
+    "juego": 2,
+    "dificultad": 3
   }
+
 ]

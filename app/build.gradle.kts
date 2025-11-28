@@ -54,12 +54,8 @@ android {
 chaquopy {
 
     defaultConfig {
-
         version = "3.11"
 
-
-
-        // Paquetes pip (opcional)
 
         pip {
 
