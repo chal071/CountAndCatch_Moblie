@@ -41,12 +41,17 @@ class InicioSesionActivity : AppCompatActivity() {
     private fun guardarNombreDeUsuario() {
         val etName = findViewById<EditText>(R.id.etNameIS)
         val nombre = etName.text.toString().trim()
+        val etAge = findViewById<EditText>(R.id.etAgeIS)
+        val edad = etAge.text.toString().toInt()
 
         if (nombre.isEmpty()) {
             Toast.makeText(this, "Por favor, introduzca su nombre.", Toast.LENGTH_SHORT).show()
-        }else{
+        }else if (edad.toString().isEmpty())
+            Toast.makeText(this, "Por favor, introduzca su edad.", Toast.LENGTH_SHORT).show()
+        else{
         val partida = Partida(
             nombre = nombre,
+            edad = edad,
             tiempo_partida = 0,
             errores = 0,
             puntos = 0,

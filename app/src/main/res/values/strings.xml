@@ -13,4 +13,6 @@
     <string name="_0">0</string>
     <string name="_0s">0s</string>
     <string name="empezar">EMPEZAR</string>
+    <string name="edad">Edad</string>
+    <string name="nombre">Nombre</string>
 </resources>
