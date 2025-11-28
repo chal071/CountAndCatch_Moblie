@@ -31,6 +31,7 @@ class ResultadoActivity : AppCompatActivity() {
         val layoutJuego1 = findViewById<View>(R.id.layoutJuego1)
         val txtResultadoErrores = findViewById<TextView>(R.id.txtResultadoErrores)
         val imgResultadoCruz = findViewById<ImageView>(R.id.imgResultadoCruz)
+        val layoutJuego1Win = findViewById<View>(R.id.layoutJuego1Win)
 
 
         val layoutJuego2 = findViewById<View>(R.id.layoutJuego2)
@@ -59,17 +60,25 @@ class ResultadoActivity : AppCompatActivity() {
         txtResultadoTitulo.text = "Dificultad: $dificultadTexto"
 
         // mostrar los resultados de juegos correspondiente
-        if (partida.juego == 1) {
-            layoutJuego1.visibility = View.VISIBLE
+        if (partida.juego == 1 ) {
             layoutJuego2.visibility = View.GONE
-            txtResultadoErrores.text = partida.errores.toString()
+
+            if (partida.errores == 0) {
+                layoutJuego1.visibility = View.GONE
+                layoutJuego1Win.visibility = View.VISIBLE
+            }
+            else {
+                layoutJuego1.visibility = View.VISIBLE
+                layoutJuego1Win.visibility = View.GONE
+                txtResultadoErrores.text = partida.errores.toString()
+            }
+
         } else if (partida.juego == 2) {
             layoutJuego1.visibility = View.GONE
             layoutJuego2.visibility = View.VISIBLE
             txtResultadoPuntos.text = partida.puntos.toString()
             txtTiempoPartida.text = partida.tiempo_partida.toString()
-
-
+            
             txtTiempoPartida.text = formatMinutesToTime(partida.tiempo_partida)
 
         }

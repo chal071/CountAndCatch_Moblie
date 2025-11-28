@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/txtResultadoTitulo"
             app:layout_constraintBottom_toTopOf="@id/resultadobtnAceptar"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +120,32 @@
                 android:fontFamily="@font/poppins_black"
                 android:paddingHorizontal="10dp"
                 android:textAllCaps="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutJuego1Win"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/txtResultadoTitulo"
+            app:layout_constraintBottom_toTopOf="@id/resultadobtnAceptar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/txtZeroError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Genial! ¡No cometiste ningún error!✨✨✨"
+                android:textSize="80sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_black"
+                android:textColor="@color/blue_main"
+                android:gravity="center"
+                />
+
+
         </LinearLayout>
 
         <Button
