@@ -137,7 +137,7 @@
                 android:id="@+id/txtZeroError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Genial! ¡No cometiste ningún error!✨✨✨"
+                android:text="Perfecto!"
                 android:textSize="80sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_black"
