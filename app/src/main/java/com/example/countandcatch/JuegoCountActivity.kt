@@ -92,7 +92,7 @@ class JuegoCountActivity : AppCompatActivity() {
     }
 
     private fun obtenerFechaHora(): String {
-        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
         return sdf.format(java.util.Date())
     }
 

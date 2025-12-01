@@ -129,7 +129,7 @@ class JuegoCatchActivity : AppCompatActivity() {
     }
 
     private fun getDateTime(): String {
-        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
         return sdf.format(java.util.Date())
     }
 
