@@ -6,7 +6,7 @@
     android:id="@+id/mainIS"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
+    android:background="@drawable/bginicio"
     android:orientation="vertical"
     android:padding="@dimen/btnHomePaddingInside">
 
@@ -29,7 +29,6 @@
         android:layout_width="@dimen/EscribetunombreWidth"
         android:layout_height="@dimen/Escribetunombre"
         android:padding="18dp"
-
         android:background="@drawable/btn_azul"
         android:text="ESCRIBE TU NOMBRE"
         android:textColor="@android:color/white"
@@ -44,26 +43,44 @@
         android:layout_height="150dp"
         android:layout_marginHorizontal="180dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/rectangle"
-        android:hint="Tu nombre"
+        android:hint="@string/nombre"
         android:padding="20dp"
         android:textSize="50sp"
         android:layout_gravity="center"
+        android:maxLines="1"
+        android:inputType="text"
+        android:background="@drawable/rounded_edittext"
         />
+
+    <EditText
+        android:id="@+id/etAgeIS"
+        android:layout_width="@dimen/EscribetunombreWidth"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="180dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/edad"
+        android:padding="20dp"
+        android:textSize="50sp"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:inputType="number"
+
+        android:background="@drawable/rounded_edittext"
+        />
+
 
     <Button
         android:id="@+id/btnContinueIS"
         android:layout_width="@dimen/btnContinua"
         android:layout_height="150dp"
+        android:layout_gravity="center"
         android:layout_marginTop="60dp"
+        android:backgroundTint="@color/blue_main"
         android:paddingHorizontal="35dp"
         android:paddingVertical="15dp"
-        android:backgroundTint="@color/blue_main"
         android:text="CONTINUA"
         android:textSize="35sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-       />
+        android:textStyle="bold" />
 
 
 </LinearLayout>

@@ -1,66 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainElegirJuegos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    android:padding="15dp"
-    android:background="@color/fondo"
-    >
+    android:padding="15dp">
 
     <ImageButton
         android:id="@+id/btnHomeEJ"
         android:layout_width="@dimen/btnHomeAncho"
         android:layout_height="@dimen/btnHomeAlto"
-        android:src="@drawable/home"
-        android:scaleType="fitCenter"
-        android:padding="@dimen/btnHomePaddingInside"
         android:background="@drawable/btn_azul"
-        android:contentDescription="@string/home_page" />
+        android:contentDescription="@string/home_page"
+        android:padding="@dimen/btnHomePaddingInside"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/mbLinearLayout"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/mbLinearLayout"
-        >
+        android:orientation="horizontal">
 
-    <FrameLayout
-            android:id="@+id/frameJuegoCatchEJ"
-            android:layout_width="480dp"
-            android:layout_height="500dp"
-            android:layout_marginRight="@dimen/frameMarginRight"
-        >
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="false"
-
-            android:scaleType="centerCrop"
-            />
-    </FrameLayout>
-
-    <FrameLayout
+        <FrameLayout
             android:id="@+id/frameJuegoCountEJ"
             android:layout_width="480dp"
             android:layout_height="500dp"
+            android:layout_marginEnd="@dimen/frameMarginRight"
+            android:padding="20dp">
 
-        >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bgcount"
+                android:clipToOutline="true"
+                android:background="@drawable/rounded_mask"
+                />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/count"
-            android:clickable="false"
-            android:scaleType="centerCrop"
+        </FrameLayout>
 
-            />
+        <FrameLayout
+            android:id="@+id/frameJuegoCatchEJ"
+            android:layout_width="480dp"
+            android:layout_height="500dp"
+            android:padding="20dp">
 
-    </FrameLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:scaleType="centerCrop"
+                android:src="@drawable/catch_logo"
+                android:clipToOutline="true"
+                android:background="@drawable/rounded_mask"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -68,10 +66,10 @@
         android:id="@+id/btnEmpezarEJ"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:text="EMPEZAR"
-        android:textSize="@dimen/btnEmpezar_size"
-        android:backgroundTint="@color/blue_main"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/marginBottom" />
+        android:layout_marginBottom="@dimen/marginBottom"
+        android:backgroundTint="@color/blue_main"
+        android:text="@string/empezar"
+        android:textSize="@dimen/btnEmpezar_size" />
 
-    </LinearLayout>
+</LinearLayout>

@@ -135,7 +135,7 @@ class JuegoCountActivity : AppCompatActivity() {
         adapterImg.submit(imgList)
         adapterNumber.submit(numList)
 
-        val size = widthPx / pairCount - 4
+        val size = widthPx / pairCount - 10
         adapterImg.setItemSize(size)
         adapterNumber.setItemSize(size)
 

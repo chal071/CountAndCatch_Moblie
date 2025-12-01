@@ -1,79 +1,82 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="30dp"
     android:background="#FDFCD1">
 
-    <!-- Texto "Elegir nivel" -->
+    <!-- Botón Home / ImageButton -->
 
-    <!-- Layout de botones de dificultad -->
+    <!-- LinearLayout con los 3 botones de dificultad -->
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="@dimen/btnHomeAncho"
+        android:layout_height="@dimen/btnHomeAlto"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/btn_azul"
+        android:contentDescription="@string/home_page"
+        android:padding="@dimen/btnHomePaddingInside"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Botón Continuar -->
-
-    <TextView
-        android:id="@+id/tvElegirNivel"
-        android:layout_width="305dp"
-        android:layout_height="232dp"
-        android:layout_marginBottom="20dp"
-        android:text="Elegir nivel"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_margin="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonsLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-
     <LinearLayout
         android:id="@+id/buttonsLayout"
-        android:layout_width="578dp"
-        android:layout_height="172dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvElegirNivel">
+        app:layout_constraintTop_toBottomOf="@id/imageButton">
 
         <Button
             android:id="@+id/btnJcFacil"
-            android:layout_width="176dp"
-            android:layout_height="84dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#62F76E"
-            android:text="FÁCIL" />
+            android:layout_width="244dp"
+            android:layout_height="294dp"
+            android:layout_margin="50dp"
+            android:background="@drawable/btn_facil"
+            android:textSize="30sp"
+            android:text="FÁCIL"
+            app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/btnJcIntermedio"
-            android:layout_width="177dp"
-            android:layout_height="84dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#7179FD"
-            android:text="INTERMEDIO" />
+            android:layout_width="244dp"
+            android:layout_height="294dp"
+            android:layout_margin="50dp"
+            android:background="@drawable/btn_intermedio"
+            android:textSize="30sp"
+            android:text="INTERMEDIO"
+            app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/btnJcDificil"
-            android:layout_width="161dp"
-            android:layout_height="87dp"
-            android:layout_margin="10dp"
-            android:backgroundTint="#F76161"
-            android:text="DIFÍCIL" />
+            android:layout_width="250dp"
+            android:layout_height="302dp"
+            android:layout_margin="50dp"
+            android:background="@drawable/btn_dificil"
+            android:textSize="30sp"
+            android:text="DIFÍCIL"
+            app:backgroundTint="@null" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnJcContinuar"
-        android:layout_width="299dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="52dp"
-        android:backgroundTint="#4AA8FF"
+        android:layout_width="386dp"
+        android:layout_height="134dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_continuar"
+        android:textSize="30sp"
         android:text="CONTINUA"
         android:textStyle="bold"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonsLayout" />
