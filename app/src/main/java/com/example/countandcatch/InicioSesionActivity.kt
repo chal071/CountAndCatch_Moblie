@@ -49,7 +49,7 @@ class InicioSesionActivity : AppCompatActivity() {
             nombre = nombre,
             tiempo_partida = 0,
             errores = 0,
-            fecha = "",
+            fecha_hora = "",
             juego = 0,
             dificultad = 0
         )
