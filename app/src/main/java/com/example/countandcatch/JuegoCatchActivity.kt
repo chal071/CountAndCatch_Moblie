@@ -128,8 +128,8 @@ class JuegoCatchActivity : AppCompatActivity() {
         handler.postDelayed(timeRunnable, 1000)
     }
 
-    private fun getDate(): String {
-        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+    private fun getDateTime(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
         return sdf.format(java.util.Date())
     }
 
@@ -244,7 +244,7 @@ class JuegoCatchActivity : AppCompatActivity() {
         if (base != null) {
             val updated = base.copy(
                 tiempo_partida = elapsedSeconds,
-                fecha = getDate(),
+                fecha_hora = getDateTime(),
                 puntos = positivePoints
             )
             val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)

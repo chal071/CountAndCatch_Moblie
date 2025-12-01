@@ -91,8 +91,8 @@ class JuegoCountActivity : AppCompatActivity() {
         }
     }
 
-    private fun obtenerFechaHoy(): String {
-        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+    private fun obtenerFechaHora(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
         return sdf.format(java.util.Date())
     }
 
@@ -178,7 +178,7 @@ class JuegoCountActivity : AppCompatActivity() {
                     if (base != null) {
                         val updated = base.copy(
                             tiempo_partida = elapsedSeconds,
-                            fecha = obtenerFechaHoy(),
+                            fecha_hora = obtenerFechaHora(),
                             errores = errores
                         )
                         val intent = Intent(this, ResultadoActivity::class.java)

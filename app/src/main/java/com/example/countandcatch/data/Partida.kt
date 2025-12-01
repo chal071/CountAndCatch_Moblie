@@ -8,7 +8,7 @@ data class Partida(
     val tiempo_partida: Int,
     val errores: Int,
     val puntos: Int,
-    val fecha: String,
+    val fecha_hora: String,
     val juego: Int,
     val dificultad: Int
 ): Serializable
