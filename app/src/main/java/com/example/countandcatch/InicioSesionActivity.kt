@@ -55,9 +55,10 @@ class InicioSesionActivity : AppCompatActivity() {
             tiempo_partida = 0,
             errores = 0,
             puntos = 0,
-            fecha = "",
-            juego = 0,
-            dificultad = 0
+            fecha_hora = "",
+            juego = 0, //1=count 2=catch
+            dificultad = 0, //1=baja 2=media 3=alta
+            terminada = 0 //0=no 1=si
         )
         val intent = Intent(this, ElegirJuegosActivity::class.java)
         intent.putExtra("partida", partida)
