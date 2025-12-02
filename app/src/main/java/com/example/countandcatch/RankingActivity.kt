@@ -60,16 +60,20 @@ class RankingActivity : AppCompatActivity() {
         val todasPartidas: List<Partida> = JsonHelper.loadList(this)
 
         val partidasFiltradas = todasPartidas.filter {
-            it.juego == juegoId && it.dificultad == dificultad
+            it.juego == juegoId &&
+            it.dificultad == dificultad &&
+            it.terminada == 1
         }
 
         val rankingOrdenado = when (juegoId) {
             1 -> partidasFiltradas.sortedWith(
                 compareBy<Partida> { it.errores }
                     .thenBy { it.tiempo_partida })
+
             2 -> partidasFiltradas.sortedWith(
                 compareByDescending<Partida> { it.puntos }
                     .thenBy { it.tiempo_partida })
+
             else -> partidasFiltradas
         }
 
@@ -78,7 +82,7 @@ class RankingActivity : AppCompatActivity() {
         rvRanking.layoutManager = LinearLayoutManager(this)
         rvRanking.adapter = RankingAdapter(rankingOrdenado, juego)
 
-        btnHome.setOnClickListener{
+        btnHome.setOnClickListener {
             val intent = Intent(this, HomePageActivity::class.java)
             startActivity(intent)
         }
