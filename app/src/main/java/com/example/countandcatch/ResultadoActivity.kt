@@ -59,7 +59,6 @@ class ResultadoActivity : AppCompatActivity() {
 
         txtResultadoTitulo.text = "Dificultad: $dificultadTexto"
 
-        // mostrar los resultados de juegos correspondiente
         if (partida.juego == 1 ) {
             layoutJuego2.visibility = View.GONE
 
@@ -83,7 +82,9 @@ class ResultadoActivity : AppCompatActivity() {
 
         }
 
-        guardarPartida(partida)
+        if (partida.terminada == 1) {
+            guardarPartida(partida)
+        }
 
         val btnAceptar = findViewById<Button>(R.id.resultadobtnAceptar)
         btnAceptar.setOnClickListener {

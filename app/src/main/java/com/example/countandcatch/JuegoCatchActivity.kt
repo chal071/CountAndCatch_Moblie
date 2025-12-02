@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.countandcatch.data.Partida
+import com.example.countandcatch.utils.JsonHelper
 import kotlin.random.Random
 
 class JuegoCatchActivity : AppCompatActivity() {
@@ -31,7 +32,6 @@ class JuegoCatchActivity : AppCompatActivity() {
     private var timerView: TextView? = null
     private var partida: Partida? = null
     private var maxErrors: Int = 0
-    private var startTime = 0L
 
     private var dX =
         0f //hacer que cuando se toque la pantalla, la cesta no salte a donde se ha puesto el dedo
@@ -71,7 +71,10 @@ class JuegoCatchActivity : AppCompatActivity() {
         initializeLives(vida1, vida2, vida3)
 
         btnHome.setOnClickListener {
-            val intent = Intent(this, InicioSesionActivity::class.java)
+            saveIncompleteGame()
+
+            val intent = Intent(this, ElegirJuegosActivity::class.java)
+            intent.putExtra("partida", partida)
             startActivity(intent)
             finish()
         }
@@ -236,6 +239,25 @@ class JuegoCatchActivity : AppCompatActivity() {
         }
     }
 
+    private fun saveIncompleteGame() {
+        handler.removeCallbacks(timeRunnable)
+
+        val base = partida
+        if (base != null) {
+            val partidaIncompleta = base.copy(
+                tiempo_partida = elapsedSeconds,
+                fecha_hora = getDateTime(),
+                puntos = positivePoints,
+                terminada = 0
+            )
+
+            val lista = JsonHelper.loadList<Partida>(this).toMutableList()
+            lista.add(partidaIncompleta)
+            JsonHelper.saveList(this, lista)
+        }
+    }
+
+
     private fun endGame(positivePoints: Int){
         handler.removeCallbacks(timeRunnable)
         isGameRunning = false
@@ -245,7 +267,8 @@ class JuegoCatchActivity : AppCompatActivity() {
             val updated = base.copy(
                 tiempo_partida = elapsedSeconds,
                 fecha_hora = getDateTime(),
-                puntos = positivePoints
+                puntos = positivePoints,
+                terminada = 1
             )
             val intent = Intent(this@JuegoCatchActivity, ResultadoActivity::class.java)
             intent.putExtra("partida", updated)

@@ -18,6 +18,7 @@ import com.example.countandcatch.adapter.ImgAdapter
 import com.example.countandcatch.data.ImageItem
 import com.example.countandcatch.data.PairData
 import com.example.countandcatch.data.Partida
+import com.example.countandcatch.utils.JsonHelper
 
 class JuegoCountActivity : AppCompatActivity() {
 
@@ -86,8 +87,29 @@ class JuegoCountActivity : AppCompatActivity() {
         val buttonHome = findViewById<ImageButton>(R.id.btnHomeJC)
 
         buttonHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            guardarJuegoIncompleto()
+            val intent = Intent(this, ElegirJuegosActivity::class.java)
+            intent.putExtra("partida", partida)
             startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun guardarJuegoIncompleto() {
+        handler.removeCallbacks(timerRunnable)
+
+        val base = partida
+        if (base != null) {
+            val partidaIncompleta = base.copy(
+                tiempo_partida = elapsedSeconds,
+                fecha_hora = obtenerFechaHora(),
+                errores = errores,
+                terminada = 0
+            )
+
+            val lista = JsonHelper.loadList<Partida>(this).toMutableList()
+            lista.add(partidaIncompleta)
+            JsonHelper.saveList(this, lista)
         }
     }
 
@@ -179,7 +201,8 @@ class JuegoCountActivity : AppCompatActivity() {
                         val updated = base.copy(
                             tiempo_partida = elapsedSeconds,
                             fecha_hora = obtenerFechaHora(),
-                            errores = errores
+                            errores = errores,
+                            terminada = 1
                         )
                         val intent = Intent(this, ResultadoActivity::class.java)
                         intent.putExtra("partida", updated)
@@ -204,8 +227,8 @@ class JuegoCountActivity : AppCompatActivity() {
             adapterImg.setSelectedPair(null)
             adapterNumber.setSelectedPair(null)
         }
+    }
 
-}
 
     override fun onDestroy() {
         super.onDestroy()
