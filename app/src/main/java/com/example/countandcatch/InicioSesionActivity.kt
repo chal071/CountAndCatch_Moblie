@@ -24,6 +24,10 @@ class InicioSesionActivity : AppCompatActivity() {
             insets
         }
 
+        manageButtons()
+    }
+
+    private fun manageButtons(){
         val btnHome = findViewById<ImageButton>(R.id.btnHomeIS)
         val btnContinue = findViewById<Button>(R.id.btnContinueIS)
 
@@ -32,13 +36,11 @@ class InicioSesionActivity : AppCompatActivity() {
         }
 
         btnContinue.setOnClickListener{
-            guardarNombreDeUsuario()
+            guardarNombreEdad()
         }
-
-
     }
 
-    private fun guardarNombreDeUsuario() {
+    private fun guardarNombreEdad() {
         val etName = findViewById<EditText>(R.id.etNameIS)
         val nombre = etName.text.toString().trim()
         val etAge = findViewById<EditText>(R.id.etAgeIS)
@@ -46,9 +48,11 @@ class InicioSesionActivity : AppCompatActivity() {
 
         if (nombre.isEmpty()) {
             Toast.makeText(this, "Por favor, introduzca su nombre.", Toast.LENGTH_SHORT).show()
-        }else if (edad.toString().isEmpty())
+        } else if (edad.toString().isEmpty()) {
             Toast.makeText(this, "Por favor, introduzca su edad.", Toast.LENGTH_SHORT).show()
-        else{
+        } else if (edad < 3 || edad > 6){
+            Toast.makeText(this, "La edad debe de ser entre 3 y 6", Toast.LENGTH_SHORT).show()
+        } else{
         val partida = Partida(
             nombre = nombre,
             edad = edad,

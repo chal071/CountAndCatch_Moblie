@@ -15,8 +15,12 @@ class ElegirNivelJuego : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_elegir_nivel_juego)
 
-        partida = intent.getSerializableExtra("partida") as? Partida
+        partida = intent.getSerializableExtra("partida") as? Partida ?: return
 
+        manageLevelbtns()
+    }
+
+    private fun manageLevelbtns(){
         val btnFacil = findViewById<Button>(R.id.btnJcFacil)
         val btnIntermedio = findViewById<Button>(R.id.btnJcIntermedio)
         val btnDificil = findViewById<Button>(R.id.btnJcDificil)

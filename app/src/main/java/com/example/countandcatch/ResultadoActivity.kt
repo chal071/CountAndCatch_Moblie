@@ -14,6 +14,7 @@ import com.example.countandcatch.data.Partida
 import com.example.countandcatch.utils.JsonHelper
 
 class ResultadoActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,22 +26,34 @@ class ResultadoActivity : AppCompatActivity() {
             insets
         }
 
+        val partida = intent.getSerializableExtra("partida") as? Partida ?: return
+
+        if (partida.terminada == 1) {
+            guardarPartida(partida)
+        }
+
+        manageAcceptbtn(partida)
+        showOnScreen(partida)
+    }
+
+    private fun manageAcceptbtn(partida: Partida){
+        val btnAceptar = findViewById<Button>(R.id.resultadobtnAceptar)
+        btnAceptar.setOnClickListener {
+            val intent = Intent(this, RankingActivity::class.java)
+            intent.putExtra("partida", partida)
+            startActivity(intent)
+        }
+    }
+
+    private fun showOnScreen(partida: Partida){
         val txtResultadoNombreNino = findViewById<TextView>(R.id.txtResultadoNombreNino)
         val txtResultadoTitulo = findViewById<TextView>(R.id.txtResultadoTitulo)
-
         val layoutJuego1 = findViewById<View>(R.id.layoutJuego1)
         val txtResultadoErrores = findViewById<TextView>(R.id.txtResultadoErrores)
-        val imgResultadoCruz = findViewById<ImageView>(R.id.imgResultadoCruz)
         val layoutJuego1Win = findViewById<View>(R.id.layoutJuego1Win)
-
-
         val layoutJuego2 = findViewById<View>(R.id.layoutJuego2)
         val txtResultadoPuntos = findViewById<TextView>(R.id.txtResultadoPuntos)
-        val imgResultadoCheck = findViewById<ImageView>(R.id.imgResultadoCheck)
         val txtTiempoPartida = findViewById<TextView>(R.id.txtTiempoPartida)
-
-
-        val partida = intent.getSerializableExtra("partida") as? Partida
 
         if (partida == null) {
             txtResultadoNombreNino.text = "Error al cargar"
@@ -71,29 +84,14 @@ class ResultadoActivity : AppCompatActivity() {
                 layoutJuego1Win.visibility = View.GONE
                 txtResultadoErrores.text = partida.errores.toString()
             }
-
         } else if (partida.juego == 2) {
             layoutJuego1.visibility = View.GONE
             layoutJuego2.visibility = View.VISIBLE
             txtResultadoPuntos.text = partida.puntos.toString()
             txtTiempoPartida.text = partida.tiempo_partida.toString()
-            
             txtTiempoPartida.text = formatMinutesToTime(partida.tiempo_partida)
-
-        }
-
-        if (partida.terminada == 1) {
-            guardarPartida(partida)
-        }
-
-        val btnAceptar = findViewById<Button>(R.id.resultadobtnAceptar)
-        btnAceptar.setOnClickListener {
-            val intent = Intent(this, RankingActivity::class.java)
-            intent.putExtra("partida", partida)
-            startActivity(intent)
         }
     }
-
 
     private fun guardarPartida(partida: Partida) {
         val lista = JsonHelper.loadList<Partida>(this).toMutableList()

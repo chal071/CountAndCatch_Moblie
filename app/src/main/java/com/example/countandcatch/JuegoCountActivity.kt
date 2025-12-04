@@ -23,26 +23,18 @@ import com.example.countandcatch.utils.JsonHelper
 class JuegoCountActivity : AppCompatActivity() {
 
     private var pairCount = 0;
-
     private var selectedImage: ImageItem? = null
     private var selectedNumber: ImageItem? = null
-
     private lateinit var adapterImg: ImgAdapter
     private lateinit var adapterNumber: ImgAdapter
-
     private val displayMetrics = Resources.getSystem().displayMetrics
     private val widthPx = displayMetrics.widthPixels
-
     private lateinit var timerText: TextView
     private var startTime = 0L
     private var elapsedSeconds = 0
-
     private val handler = Handler(Looper.getMainLooper())
-
     private var partida: Partida? = null
-
     private var errores = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,14 +55,13 @@ class JuegoCountActivity : AppCompatActivity() {
             else -> 5
         }
 
-        volverPaginaDeInicio()
-
         val (imgList, numList) = generateShuffled(pairCount)
-        inicializarListasDeJuego(numList, imgList)
 
         startTime = System.currentTimeMillis()
         handler.post(timerRunnable)
 
+        inicializarListasDeJuego(numList, imgList)
+        volverPaginaDeInicio()
     }
 
     private val timerRunnable = object : Runnable {
@@ -173,7 +164,6 @@ class JuegoCountActivity : AppCompatActivity() {
         }
     }
 
-
     private fun numeroDrawableFor(id: Int): Int = when (id) {
         1 -> R.drawable.num1
         2 -> R.drawable.num2
@@ -182,7 +172,6 @@ class JuegoCountActivity : AppCompatActivity() {
         5 -> R.drawable.num5
         else -> R.drawable.num1
     }
-
 
     private fun checkMatch() {
         val img = selectedImage
@@ -228,7 +217,6 @@ class JuegoCountActivity : AppCompatActivity() {
             adapterNumber.setSelectedPair(null)
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

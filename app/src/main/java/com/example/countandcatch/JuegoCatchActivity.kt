@@ -45,19 +45,13 @@ class JuegoCatchActivity : AppCompatActivity() {
             insets
         }
 
+        partida = intent.getSerializableExtra("partida") as? Partida ?: return
+
         val layout = findViewById<ConstraintLayout>(R.id.catchLayout)
-        val btnHome = findViewById<ImageButton>(R.id.catchBtnHome)
-        val timer = findViewById<TextView>(R.id.catchTxtTimer)
-        val background = findViewById<ImageView>(R.id.imgCatchFondo)
         val basketSlide = findViewById<ImageView>(R.id.imgCatchCesta)
-        val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
-        val appleFall2 = findViewById<ImageView>(R.id.imgCatchManzana2)
-        val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
         val vida1 = findViewById<ImageView>(R.id.imgCatchManzanaVida1)
         val vida2 = findViewById<ImageView>(R.id.imgCatchManzanaVida2)
         val vida3 = findViewById<ImageView>(R.id.imgCatchManzanaVida3)
-
-        partida = intent.getSerializableExtra("partida") as? Partida
 
         maxErrors = when (partida?.dificultad) {
             1 -> 3
@@ -66,7 +60,18 @@ class JuegoCatchActivity : AppCompatActivity() {
             else -> 3
         }
 
+        layout.post {
+            centerBasket(basketSlide, layout)
+        }
+
         initializeLives(vida1, vida2, vida3)
+        manageHomebtn()
+        manageStartbtn(layout, basketSlide, vida1, vida2, vida3)
+
+    }
+
+    private fun manageHomebtn(){
+        val btnHome = findViewById<ImageButton>(R.id.catchBtnHome)
 
         btnHome.setOnClickListener {
             isGameRunning = false
@@ -77,6 +82,14 @@ class JuegoCatchActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun manageStartbtn(layout: ConstraintLayout, basketSlide: ImageView, vida1: ImageView, vida2: ImageView, vida3: ImageView){
+        val btnStart = findViewById<ImageView>(R.id.catchImgBtnStart)
+        val appleFall = findViewById<ImageView>(R.id.imgCatchManzana)
+        val appleFall2 = findViewById<ImageView>(R.id.imgCatchManzana2)
+        val timer = findViewById<TextView>(R.id.catchTxtTimer)
+        val background = findViewById<ImageView>(R.id.imgCatchFondo)
 
         btnStart.setOnClickListener {
             btnStart.visibility = View.GONE
@@ -134,6 +147,7 @@ class JuegoCatchActivity : AppCompatActivity() {
     }
 
     private val timeRunnable = object : Runnable {
+        @SuppressLint("SetTextI18n")
         override fun run() {
             elapsedSeconds++
             timerView?.text = "${elapsedSeconds}s"
@@ -148,9 +162,15 @@ class JuegoCatchActivity : AppCompatActivity() {
         handler.postDelayed(timeRunnable, 1000)
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun getDateTime(): String {
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
         return sdf.format(java.util.Date())
+    }
+
+    private fun centerBasket(basketSlide: ImageView, layout: ConstraintLayout) {
+        val centerX = layout.x + (layout.width - basketSlide.width) / 2
+        basketSlide.x = centerX
     }
 
     private fun slideBasket(basketSlide: ImageView, layout: ConstraintLayout) {

@@ -16,8 +16,7 @@ class ElegirJuegosActivity : AppCompatActivity() {
     private lateinit var btnEmpezar: Button
     private lateinit var frameJuegoCount: FrameLayout
     private lateinit var frameJuegoCatch: FrameLayout
-    private var selectedJuego: String? = null  // A = Count, B = Catch
-
+    private var selectedJuego: String? = null
     private var partida: Partida? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,17 +30,21 @@ class ElegirJuegosActivity : AppCompatActivity() {
             insets
         }
 
-        val btnHome = findViewById<ImageButton>(R.id.btnHomeEJ)
+        partida = intent.getSerializableExtra("partida") as? Partida ?: return
 
+        val btnHome = findViewById<ImageButton>(R.id.btnHomeEJ)
         btnHome.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-        
+
+        manageGamesbtns()
+        manageStartbtn()
+    }
+
+    private fun manageGamesbtns(){
         frameJuegoCatch = findViewById(R.id.frameJuegoCatchEJ)
         frameJuegoCount = findViewById(R.id.frameJuegoCountEJ)
         btnEmpezar = findViewById(R.id.btnEmpezarEJ)
-
-        partida = intent.getSerializableExtra("partida") as? Partida
 
         frameJuegoCount.setOnClickListener {
             selectedJuego = "A"
@@ -52,7 +55,9 @@ class ElegirJuegosActivity : AppCompatActivity() {
             selectedJuego = "B"
             highLightSelection(frameJuegoCatch, frameJuegoCount)
         }
+    }
 
+    private fun manageStartbtn(){
         btnEmpezar.setOnClickListener {
             val basePartida = partida
             if (basePartida == null) {

@@ -16,8 +16,8 @@ class HomePageActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val imgCirculo = findViewById<ImageView>(R.id.imgCirculo)
 
+        val imgCirculo = findViewById<ImageView>(R.id.imgCirculo)
         imgCirculo.setOnClickListener {
             val intent = Intent(this, InicioSesionActivity::class.java)
             startActivity(intent)
