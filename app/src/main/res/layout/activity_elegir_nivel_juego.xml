@@ -23,7 +23,7 @@
             android:layout_width="400dp"
             android:layout_height="560dp"
             android:layout_margin="10dp"
-            android:background="@drawable/facil"
+            android:background="@drawable/dificil"
             app:backgroundTint="@null" />
 
         <Button
@@ -38,7 +38,7 @@
             android:id="@+id/btnJcDificil"
             android:layout_width="400dp"
             android:layout_height="560dp"
-            android:background="@drawable/dificil"
+            android:background="@drawable/facil"
             app:backgroundTint="@null" />
     </LinearLayout
         >
