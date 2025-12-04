@@ -2,68 +2,88 @@ package com.example.countandcatch
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.countandcatch.data.Partida
 
 class ElegirNivelJuego : AppCompatActivity() {
-    private var nivelSeleccionado: Int? = null
     private var partida: Partida? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_elegir_nivel_juego)
 
-
         partida = intent.getSerializableExtra("partida") as? Partida
 
         val btnFacil = findViewById<Button>(R.id.btnJcFacil)
         val btnIntermedio = findViewById<Button>(R.id.btnJcIntermedio)
         val btnDificil = findViewById<Button>(R.id.btnJcDificil)
-        val btnContinuar = findViewById<Button>(R.id.btnJcContinuar)
+
+        val buttons = listOf(btnFacil, btnIntermedio, btnDificil)
 
         btnFacil.setOnClickListener {
-            nivelSeleccionado = 1
+            resetZoom(buttons)
+            zoomSelected(it)
+            irAlJuego(1)
         }
 
         btnIntermedio.setOnClickListener {
-            nivelSeleccionado = 2
+            resetZoom(buttons)
+            zoomSelected(it)
+            irAlJuego(2)
         }
 
         btnDificil.setOnClickListener {
-            nivelSeleccionado = 3
+            resetZoom(buttons)
+            zoomSelected(it)
+            irAlJuego(3)
+        }
+    }
+
+    private fun irAlJuego(nivel: Int) {
+        val base = partida
+        if (base == null) {
+            Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        btnContinuar.setOnClickListener {
+        val updated = base.copy(
+            dificultad = nivel
+        )
 
-            val base = partida
-
-            if (nivelSeleccionado == null) {
-                Toast.makeText(this, "Selecciona un nivel antes de continuar", Toast.LENGTH_SHORT).show()
-            } else if (base == null) {
+        when (updated.juego) {
+            1 -> {
+                val intent = Intent(this, JuegoCountActivity::class.java)
+                intent.putExtra("partida", updated)
+                startActivity(intent)
+            }
+            2 -> {
+                val intent = Intent(this, JuegoCatchActivity::class.java)
+                intent.putExtra("partida", updated)
+                startActivity(intent)
+            }
+            else -> {
                 Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
-            } else {
-                val updated = base.copy(
-                    dificultad = nivelSeleccionado!!
-                )
-
-                when (partida?.juego) {
-                    1 -> {
-                        val intent = Intent(this, JuegoCountActivity::class.java)
-                        intent.putExtra("partida", updated)
-                        startActivity(intent)
-                    }
-                    2 -> {
-                        val intent = Intent(this, JuegoCatchActivity::class.java)
-                        intent.putExtra("partida", updated)
-                        startActivity(intent)
-                    }
-                    else -> {
-                        Toast.makeText(this, "Error al cargar la partida", Toast.LENGTH_SHORT).show()
-                    }
-                }
             }
         }
     }
+
+    private fun zoomSelected(button: View) {
+        button.animate()
+            .scaleX(1.2f)
+            .scaleY(1.2f)
+            .setDuration(150)
+    }
+
+    private fun resetZoom(buttons: List<View>) {
+        buttons.forEach {
+            it.animate()
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(150)
+        }
+    }
 }
+

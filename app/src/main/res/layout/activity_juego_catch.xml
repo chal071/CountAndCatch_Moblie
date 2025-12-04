@@ -133,6 +133,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/catch_manzana" />
 
+        <ImageView
+            android:id="@+id/imgCatchManzana2"
+            android:layout_width="97dp"
+            android:layout_height="99dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/catch_manzana" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
