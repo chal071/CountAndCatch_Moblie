@@ -5,6 +5,12 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile =
+                file("C:\\Users\\chaox\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe")
+        }
+    }
     namespace = "com.example.countandcatch"
     compileSdk = 36
 
@@ -52,22 +58,17 @@ android {
     }
 }
 chaquopy {
-
     defaultConfig {
         version = "3.11"
 
-
         pip {
-
             install("numpy")
-
             install("pandas")
-
+            install("matplotlib")
         }
-
     }
-
 }
+
 
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
