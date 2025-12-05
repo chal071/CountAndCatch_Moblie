@@ -1,7 +1,7 @@
 [
   {
     "nombre": "Chenxiao",
-    "edad": 12,
+    "edad": 6,
     "tiempo_partida": 45,
     "errores": 0,
     "puntos": 0,
@@ -12,7 +12,7 @@
   },
   {
     "nombre": "Qiaoqiao",
-    "edad": 11,
+    "edad": 5,
     "tiempo_partida": 52,
     "errores": 0,
     "puntos": 13,
@@ -23,7 +23,7 @@
   },
   {
     "nombre": "Lucas",
-    "edad": 10,
+    "edad": 4,
     "tiempo_partida": 38,
     "errores": 0,
     "puntos": 0,
@@ -34,7 +34,7 @@
   },
   {
     "nombre": "Marta",
-    "edad": 9,
+    "edad": 3,
     "tiempo_partida": 60,
     "errores": 0,
     "puntos": 0,
@@ -45,7 +45,7 @@
   },
   {
     "nombre": "Diego",
-    "edad": 11,
+    "edad": 6,
     "tiempo_partida": 41,
     "errores": 1,
     "puntos": 0,
@@ -56,7 +56,7 @@
   },
   {
     "nombre": "Lucía",
-    "edad": 10,
+    "edad": 5,
     "tiempo_partida": 55,
     "errores": 0,
     "puntos": 0,
@@ -67,7 +67,7 @@
   },
   {
     "nombre": "Hugo",
-    "edad": 9,
+    "edad": 4,
     "tiempo_partida": 30,
     "errores": 0,
     "puntos": 0,
@@ -78,7 +78,7 @@
   },
   {
     "nombre": "Sofía",
-    "edad": 12,
+    "edad": 3,
     "tiempo_partida": 48,
     "errores": 0,
     "puntos": 12,
@@ -89,7 +89,7 @@
   },
   {
     "nombre": "Pau",
-    "edad": 9,
+    "edad": 6,
     "tiempo_partida": 36,
     "errores": 1,
     "puntos": 0,
@@ -100,7 +100,7 @@
   },
   {
     "nombre": "Aina",
-    "edad": 10,
+    "edad": 5,
     "tiempo_partida": 62,
     "errores": 0,
     "puntos": 0,
@@ -111,7 +111,7 @@
   },
   {
     "nombre": "Marc",
-    "edad": 11,
+    "edad": 4,
     "tiempo_partida": 44,
     "errores": 0,
     "puntos": 0,
@@ -122,7 +122,7 @@
   },
   {
     "nombre": "Clara",
-    "edad": 8,
+    "edad": 3,
     "tiempo_partida": 70,
     "errores": 0,
     "puntos": 4,
@@ -133,7 +133,7 @@
   },
   {
     "nombre": "Jordi",
-    "edad": 12,
+    "edad": 6,
     "tiempo_partida": 39,
     "errores": 2,
     "puntos": 0,
@@ -144,7 +144,7 @@
   },
   {
     "nombre": "Nuria",
-    "edad": 10,
+    "edad": 5,
     "tiempo_partida": 53,
     "errores": 0,
     "puntos": 16,
@@ -155,7 +155,7 @@
   },
   {
     "nombre": "Leo",
-    "edad": 9,
+    "edad": 4,
     "tiempo_partida": 47,
     "errores": 0,
     "puntos": 0,
@@ -166,11 +166,198 @@
   },
   {
     "nombre": "Irene",
-    "edad": 11,
+    "edad": 3,
     "tiempo_partida": 40,
     "errores": 0,
     "puntos": 20,
     "fecha_hora": "2025-11-07 13:55:00",
+    "juego": 2,
+    "dificultad": 3,
+    "terminada": 1
+  },
+  {
+    "nombre": "Chenxiao",
+    "edad": 6,
+    "tiempo_partida": 50,
+    "errores": 1,
+    "puntos": 10,
+    "fecha_hora": "2025-11-08 17:10:00",
+    "juego": 1,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Chenxiao",
+    "edad": 6,
+    "tiempo_partida": 42,
+    "errores": 0,
+    "puntos": 15,
+    "fecha_hora": "2025-11-10 17:45:00",
+    "juego": 2,
+    "dificultad": 1,
+    "terminada": 1
+  },
+  {
+    "nombre": "Qiaoqiao",
+    "edad": 5,
+    "tiempo_partida": 39,
+    "errores": 0,
+    "puntos": 18,
+    "fecha_hora": "2025-11-02 18:20:00",
+    "juego": 2,
+    "dificultad": 3,
+    "terminada": 1
+  },
+  {
+    "nombre": "Lucas",
+    "edad": 4,
+    "tiempo_partida": 35,
+    "errores": 1,
+    "puntos": 5,
+    "fecha_hora": "2025-11-03 10:40:00",
+    "juego": 1,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Marta",
+    "edad": 3,
+    "tiempo_partida": 55,
+    "errores": 0,
+    "puntos": 8,
+    "fecha_hora": "2025-11-04 11:10:00",
+    "juego": 2,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Diego",
+    "edad": 6,
+    "tiempo_partida": 48,
+    "errores": 2,
+    "puntos": 6,
+    "fecha_hora": "2025-11-05 09:30:00",
+    "juego": 1,
+    "dificultad": 3,
+    "terminada": 1
+  },
+  {
+    "nombre": "Lucía",
+    "edad": 5,
+    "tiempo_partida": 40,
+    "errores": 0,
+    "puntos": 10,
+    "fecha_hora": "2025-11-06 10:15:00",
+    "juego": 2,
+    "dificultad": 1,
+    "terminada": 1
+  },
+  {
+    "nombre": "Hugo",
+    "edad": 4,
+    "tiempo_partida": 32,
+    "errores": 1,
+    "puntos": 3,
+    "fecha_hora": "2025-11-04 16:25:00",
+    "juego": 1,
+    "dificultad": 2,
+    "terminada": 0
+  },
+  {
+    "nombre": "Sofía",
+    "edad": 3,
+    "tiempo_partida": 51,
+    "errores": 0,
+    "puntos": 22,
+    "fecha_hora": "2025-11-05 17:05:00",
+    "juego": 2,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Pau",
+    "edad": 6,
+    "tiempo_partida": 29,
+    "errores": 0,
+    "puntos": 2,
+    "fecha_hora": "2025-11-06 12:15:00",
+    "juego": 1,
+    "dificultad": 1,
+    "terminada": 0
+  },
+  {
+    "nombre": "Aina",
+    "edad": 5,
+    "tiempo_partida": 58,
+    "errores": 0,
+    "puntos": 9,
+    "fecha_hora": "2025-11-07 12:50:00",
+    "juego": 2,
+    "dificultad": 3,
+    "terminada": 1
+  },
+  {
+    "nombre": "Marc",
+    "edad": 4,
+    "tiempo_partida": 46,
+    "errores": 1,
+    "puntos": 7,
+    "fecha_hora": "2025-11-06 15:20:00",
+    "juego": 1,
+    "dificultad": 3,
+    "terminada": 1
+  },
+  {
+    "nombre": "Clara",
+    "edad": 3,
+    "tiempo_partida": 63,
+    "errores": 0,
+    "puntos": 10,
+    "fecha_hora": "2025-11-07 15:45:00",
+    "juego": 2,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Jordi",
+    "edad": 6,
+    "tiempo_partida": 42,
+    "errores": 1,
+    "puntos": 5,
+    "fecha_hora": "2025-11-07 09:25:00",
+    "juego": 1,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Nuria",
+    "edad": 5,
+    "tiempo_partida": 49,
+    "errores": 0,
+    "puntos": 18,
+    "fecha_hora": "2025-11-08 10:05:00",
+    "juego": 2,
+    "dificultad": 3,
+    "terminada": 1
+  },
+  {
+    "nombre": "Leo",
+    "edad": 4,
+    "tiempo_partida": 41,
+    "errores": 1,
+    "puntos": 4,
+    "fecha_hora": "2025-11-08 13:40:00",
+    "juego": 1,
+    "dificultad": 2,
+    "terminada": 1
+  },
+  {
+    "nombre": "Irene",
+    "edad": 3,
+    "tiempo_partida": 38,
+    "errores": 0,
+    "puntos": 19,
+    "fecha_hora": "2025-11-08 14:05:00",
     "juego": 2,
     "dificultad": 3,
     "terminada": 1

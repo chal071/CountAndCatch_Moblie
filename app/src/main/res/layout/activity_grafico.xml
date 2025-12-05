@@ -1,130 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mianGrafico"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainGrafico"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bghome"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:fillViewport="true">
 
-    <!-- 标题 -->
-    <TextView
-        android:id="@+id/tvTituloMetrics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mètriques"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
-
-    <!-- 上面一排数字指标 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="12dp">
+        android:orientation="vertical">
 
+        <!-- 标题 -->
         <TextView
+            android:id="@+id/tvTituloMetrics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jugadors únics:"
-            android:textColor="@android:color/white"/>
-
-        <TextView
-            android:id="@+id/textViewPlayers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
+            android:text="Mètriques"
+            android:textSize="26sp"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:layout_gravity="center_horizontal"
+            android:letterSpacing="0.05"
+            android:paddingBottom="8dp" />
 
+        <!-- 小标题 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Durada mitjana de sessió:"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/white"/>
-
-        <TextView
-            android:id="@+id/textViewAvgSession"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 s"
+            android:text="Resum de la sessió"
             android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            android:textSize="14sp"
+            android:alpha="0.8"
+            android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- 顶部指标卡片区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Retention / Churn:"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/white"/>
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
 
-        <TextView
-            android:id="@+id/textViewRetention"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 %"
-            android:textColor="@android:color/white"/>
+            <!-- 第一行：玩家数 + 平均时长 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
 
-        <TextView
-            android:id="@+id/textViewChurn"
-            android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="#33000000"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jugadors únics"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:alpha="0.8" />
+
+                    <TextView
+                        android:id="@+id/textViewPlayers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="#33000000"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Durada mitjana"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:alpha="0.8" />
+
+                    <TextView
+                        android:id="@+id/textViewAvgSession"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 s"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 第二行：Retention + Churn -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="#33000000"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Retention"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:alpha="0.8" />
+
+                    <TextView
+                        android:id="@+id/textViewRetention"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 %"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:background="#33000000"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Churn"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:alpha="0.8" />
+
+                    <TextView
+                        android:id="@+id/textViewChurn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 %"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 图表卡 1：时长直方图 -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0 %"
-            android:textColor="@android:color/white"/>
+            android:orientation="vertical"
+            android:background="#33000000"
+            android:layout_marginTop="20dp"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distribució del temps de partida"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <ImageView
+                android:id="@+id/imageViewHist"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <!-- 图表卡 2：DAU -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#33000000"
+            android:layout_marginTop="16dp"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jugadors actius per dia (DAU)"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <ImageView
+                android:id="@+id/imageViewDau"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+        <!-- 图表卡 3：完成率 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#33000000"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tasa de finalització per joc"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp" />
+
+            <ImageView
+                android:id="@+id/imageViewCompletion"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
     </LinearLayout>
-
-    <!-- 图1：时长直方图 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Distribució del temps de partida"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/white"/>
-
-    <ImageView
-        android:id="@+id/imageViewHist"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:background="#33000000"
-        android:layout_marginTop="4dp"/>
-
-    <!-- 图2：DAU -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugadors actius per dia (DAU)"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/white"/>
-
-    <ImageView
-        android:id="@+id/imageViewDau"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:background="#33000000"
-        android:layout_marginTop="4dp"/>
-
-    <!-- 图3：完成率 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tasa de finalització per joc"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/white"/>
-
-    <ImageView
-        android:id="@+id/imageViewCompletion"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:background="#33000000"
-        android:layout_marginTop="4dp"/>
-
-</LinearLayout>
+</ScrollView>

@@ -5,12 +5,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        getByName("debug") {
-            storeFile =
-                file("C:\\Users\\chaox\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe")
-        }
-    }
     namespace = "com.example.countandcatch"
     compileSdk = 36
 
@@ -77,7 +71,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.compose.animation.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

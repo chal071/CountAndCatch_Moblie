@@ -34,18 +34,15 @@ def run_analysis(json_str):
             "completion_by_game": "",
         }
 
-    # 2) 解析时间
     if "fecha_hora" in df.columns:
         df["fecha_hora"] = pd.to_datetime(df["fecha_hora"])
         df["fecha"] = df["fecha_hora"].dt.date
 
-    # 3) 基本指标
     player_count = df["nombre"].nunique() if "nombre" in df.columns else 0
     avg_session_length = (
         df["tiempo_partida"].mean() if "tiempo_partida" in df.columns else 0.0
     )
 
-    # returning_player：同一 nombre 有 >=2 条记录视为“回流”
     if "nombre" in df.columns and "fecha_hora" in df.columns:
         sessions_per_player = df.groupby("nombre")["fecha_hora"].count()
         returning = (sessions_per_player >= 2).astype(int)
@@ -62,7 +59,6 @@ def run_analysis(json_str):
         "churn_rate": float(churn_rate),
     }
 
-    # 4) 图1：tiempo_partida 直方图
     hist_session_length_b64 = ""
     if "tiempo_partida" in df.columns:
         def plot_hist():
@@ -73,7 +69,6 @@ def run_analysis(json_str):
 
         hist_session_length_b64 = fig_to_base64(plot_hist)
 
-    # 5) 图2：DAU 折线（fecha vs jugadores únicos）
     dau_b64 = ""
     if "fecha" in df.columns and "nombre" in df.columns:
         dau_series = df.groupby("fecha")["nombre"].nunique()
@@ -87,7 +82,6 @@ def run_analysis(json_str):
 
         dau_b64 = fig_to_base64(plot_dau)
 
-    # 6) 图3：每个 juego 的通关率（terminada==1 的比例）
     completion_b64 = ""
     if "juego" in df.columns and "terminada" in df.columns:
         comp = df.groupby("juego")["terminada"].mean() * 100
