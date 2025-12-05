@@ -18,30 +18,23 @@ import com.example.countandcatch.adapter.ImgAdapter
 import com.example.countandcatch.data.ImageItem
 import com.example.countandcatch.data.PairData
 import com.example.countandcatch.data.Partida
+import com.example.countandcatch.utils.JsonHelper
 
 class JuegoCountActivity : AppCompatActivity() {
 
     private var pairCount = 0;
-
     private var selectedImage: ImageItem? = null
     private var selectedNumber: ImageItem? = null
-
     private lateinit var adapterImg: ImgAdapter
     private lateinit var adapterNumber: ImgAdapter
-
     private val displayMetrics = Resources.getSystem().displayMetrics
     private val widthPx = displayMetrics.widthPixels
-
     private lateinit var timerText: TextView
     private var startTime = 0L
     private var elapsedSeconds = 0
-
     private val handler = Handler(Looper.getMainLooper())
-
     private var partida: Partida? = null
-
     private var errores = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,14 +55,13 @@ class JuegoCountActivity : AppCompatActivity() {
             else -> 5
         }
 
-        volverPaginaDeInicio()
-
         val (imgList, numList) = generateShuffled(pairCount)
-        inicializarListasDeJuego(numList, imgList)
 
         startTime = System.currentTimeMillis()
         handler.post(timerRunnable)
 
+        inicializarListasDeJuego(numList, imgList)
+        volverPaginaDeInicio()
     }
 
     private val timerRunnable = object : Runnable {
@@ -86,13 +78,34 @@ class JuegoCountActivity : AppCompatActivity() {
         val buttonHome = findViewById<ImageButton>(R.id.btnHomeJC)
 
         buttonHome.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            guardarJuegoIncompleto()
+            val intent = Intent(this, ElegirJuegosActivity::class.java)
+            intent.putExtra("partida", partida)
             startActivity(intent)
+            finish()
         }
     }
 
-    private fun obtenerFechaHoy(): String {
-        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd")
+    private fun guardarJuegoIncompleto() {
+        handler.removeCallbacks(timerRunnable)
+
+        val base = partida
+        if (base != null) {
+            val partidaIncompleta = base.copy(
+                tiempo_partida = elapsedSeconds,
+                fecha_hora = obtenerFechaHora(),
+                errores = errores,
+                terminada = 0
+            )
+
+            val lista = JsonHelper.loadList<Partida>(this).toMutableList()
+            lista.add(partidaIncompleta)
+            JsonHelper.saveList(this, lista)
+        }
+    }
+
+    private fun obtenerFechaHora(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
         return sdf.format(java.util.Date())
     }
 
@@ -151,7 +164,6 @@ class JuegoCountActivity : AppCompatActivity() {
         }
     }
 
-
     private fun numeroDrawableFor(id: Int): Int = when (id) {
         1 -> R.drawable.num1
         2 -> R.drawable.num2
@@ -160,7 +172,6 @@ class JuegoCountActivity : AppCompatActivity() {
         5 -> R.drawable.num5
         else -> R.drawable.num1
     }
-
 
     private fun checkMatch() {
         val img = selectedImage
@@ -178,8 +189,9 @@ class JuegoCountActivity : AppCompatActivity() {
                     if (base != null) {
                         val updated = base.copy(
                             tiempo_partida = elapsedSeconds,
-                            fecha = obtenerFechaHoy(),
-                            errores = errores
+                            fecha_hora = obtenerFechaHora(),
+                            errores = errores,
+                            terminada = 1
                         )
                         val intent = Intent(this, ResultadoActivity::class.java)
                         intent.putExtra("partida", updated)
@@ -204,8 +216,7 @@ class JuegoCountActivity : AppCompatActivity() {
             adapterImg.setSelectedPair(null)
             adapterNumber.setSelectedPair(null)
         }
-
-}
+    }
 
     override fun onDestroy() {
         super.onDestroy()
