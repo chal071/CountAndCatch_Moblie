@@ -37,6 +37,18 @@
             android:textSize="@dimen/txtRanking"
             android:background="@drawable/btn_azul"
             android:layout_centerInParent="true"/>
+
+        <ImageButton
+            android:id="@+id/btnGraficoRanking"
+            android:layout_width="@dimen/btnHomeAncho"
+            android:layout_height="@dimen/btnHomeAlto"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_azul"
+            android:contentDescription="@string/home_page"
+            android:padding="@dimen/btnHomePaddingInside"
+            android:scaleType="centerInside"
+            android:src="@drawable/grafico" />
     </RelativeLayout>
 
     <LinearLayout

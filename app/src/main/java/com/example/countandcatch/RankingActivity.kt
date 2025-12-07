@@ -24,6 +24,7 @@ class RankingActivity : AppCompatActivity() {
     private lateinit var star3: ImageView
     private lateinit var rvRanking: RecyclerView
     private lateinit var btnHome: ImageButton
+    private lateinit var btnGrafico: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,7 @@ class RankingActivity : AppCompatActivity() {
         star3 = findViewById(R.id.star3)
         rvRanking = findViewById(R.id.rvRanking)
         btnHome = findViewById(R.id.btnHomeRanking)
+        btnGrafico = findViewById(R.id.btnGraficoRanking)
 
         val partida = intent.getSerializableExtra("partida") as? Partida ?: return
 
@@ -56,6 +58,10 @@ class RankingActivity : AppCompatActivity() {
         rankPartidas(dificultad, juego)
         setStars(dificultad)
         manageHomebtn(partida)
+        btnGrafico.setOnClickListener {
+            val intent = Intent(this, GraficoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun rankPartidas(dificultad: Int, juego: Int){
@@ -103,6 +109,7 @@ class RankingActivity : AppCompatActivity() {
             finish()
         }
     }
+
     private fun setStars(level: Int) {
         val stars = listOf(star1, star2, star3)
         stars.forEachIndexed { index, imageView ->

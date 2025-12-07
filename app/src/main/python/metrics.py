@@ -35,7 +35,11 @@ def run_analysis(json_str):
         }
 
     if "fecha_hora" in df.columns:
-        df["fecha_hora"] = pd.to_datetime(df["fecha_hora"])
+        df["fecha_hora"] = pd.to_datetime(
+            df["fecha_hora"].astype(str).str.slice(0, 19),
+            format="%Y-%m-%d %H:%M:%S",
+            errors="coerce",
+        )
         df["fecha"] = df["fecha_hora"].dt.date
 
     player_count = df["nombre"].nunique() if "nombre" in df.columns else 0

@@ -13,37 +13,33 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- 标题 -->
         <TextView
             android:id="@+id/tvTituloMetrics"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mètriques"
-            android:textSize="26sp"
+            android:textSize="50sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="@color/blue_main"
             android:layout_gravity="center_horizontal"
             android:letterSpacing="0.05"
             android:paddingBottom="8dp" />
 
-        <!-- 小标题 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Resum de la sessió"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textColor="@color/blue_main"
+            android:textSize="30sp"
             android:alpha="0.8"
             android:layout_gravity="center_horizontal" />
 
-        <!-- 顶部指标卡片区 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="16dp">
 
-            <!-- 第一行：玩家数 + 平均时长 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +106,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- 第二行：Retention + Churn -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,7 +172,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- 图表卡 1：时长直方图 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,7 +196,6 @@
                 android:scaleType="fitCenter" />
         </LinearLayout>
 
-        <!-- 图表卡 2：DAU -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -227,7 +220,6 @@
                 android:scaleType="fitCenter" />
         </LinearLayout>
 
-        <!-- 图表卡 3：完成率 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
