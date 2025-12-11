@@ -110,19 +110,21 @@ class JuegoCountActivity : AppCompatActivity() {
     private fun guardarJuegoIncompleto() {
         handler.removeCallbacks(timerRunnable)
 
-        val base = partida ?: return
+        val base = partida
+        if (base != null) {
+            val partidaIncompleta = base.copy(
+                tiempo_partida = elapsedSeconds,
+                fecha_hora = obtenerFechaHora(),
+                errores = errores,
+                terminada = 0
+            )
 
-        val partidaIncompleta = base.copy(
-            tiempo_partida = elapsedSeconds,
-            fecha_hora = obtenerFechaHora(),
-            errores = errores,
-            terminada = 0
-        )
-
-        val lista = JsonHelper.loadList<Partida>(this).toMutableList()
-        lista.add(partidaIncompleta)
-        JsonHelper.saveList(this, lista)
+            val lista = JsonHelper.loadList<Partida>(this).toMutableList()
+            lista.add(partidaIncompleta)
+            JsonHelper.saveList(this, lista)
+        }
     }
+
 
     private fun obtenerFechaHora(): String {
         return dateFormat.format(Date())
@@ -198,17 +200,20 @@ class JuegoCountActivity : AppCompatActivity() {
     }
 
     private fun checkMatch() {
-        val img = selectedImage ?: return
-        val num = selectedNumber ?: return
+        val img = selectedImage
+        val num = selectedNumber
 
-        if (img.pairId == num.pairId) {
-            handleCorrectMatch(img)
-        } else {
-            handleIncorrectMatch()
+        if (img != null && num != null) {
+            if (img.pairId == num.pairId) {
+                handleCorrectMatch(img)
+            } else {
+                handleIncorrectMatch()
+            }
+
+            clearSelection()
         }
-
-        clearSelection()
     }
+
 
     private fun handleCorrectMatch(img: ImageItem) {
         Toast.makeText(this, "✅ CORRECT", Toast.LENGTH_SHORT).show()
