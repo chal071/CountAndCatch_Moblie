@@ -133,7 +133,6 @@ class JuegoCatchActivity : AppCompatActivity() {
         startTimer(timer)
         slideBasket(basketSlide, layout)
 
-        // 主苹果负责循环；顺便有概率带上第二个
         dropItem(
             layout = layout,
             basket = basketSlide,
